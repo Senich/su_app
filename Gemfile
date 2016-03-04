@@ -10,7 +10,6 @@ gem 'bootstrap-sass', '~>3.3.4.1'
 gem 'devise', '~>3.5.1'
 gem 'jquery-ui-rails', '5.0.5'
 gem 'will_paginate-bootstrap'
-#
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
