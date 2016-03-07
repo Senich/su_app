@@ -32,9 +32,15 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <!--<li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>-->
-          <li><%= link_to "Войти", "" %></li>
-          <li><%= link_to "Регистрация", "" %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to "Личный кабинет", "" %></li>
+            <li><%= link_to "Выйти", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "Войти", new_user_session_path %></li>
+            <li><%= link_to "Регистрация", new_user_registration_path %></li>
+          <% end %>
         </ul>
+
       </div>
       <!--/.nav-collapse -->
     </div>
