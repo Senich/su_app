@@ -33,6 +33,7 @@
         <ul class="nav navbar-nav navbar-right">
           <!--<li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>-->
           <% if user_signed_in? %>
+            <div class="navbar-text"><p class="text-info"><%= current_user.first_name %></p></div>
             <li><%= link_to "Личный кабинет", "" %></li>
             <li><%= link_to "Выйти", destroy_user_session_path, method: :delete %></li>
           <% else %>
