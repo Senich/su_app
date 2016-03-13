@@ -2,7 +2,7 @@
 @import "bootstrap";
 
 .sign_in_up {
-  padding-top: 60px;
+  padding-top: 40px;
 }
 
 body {
@@ -37,4 +37,8 @@ body {
 #error_explanation {
   padding: 15px 15px 15px 30px;
   margin-bottom: 30px;
+}
+
+.remember {
+  font-size: small;
 }
