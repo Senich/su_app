@@ -20,6 +20,7 @@ RSpec.feature "Создание продукта" do
     fill_in "Высота", with: 100
     select "Белый", from: 'product_color'
     fill_in "Стоимость", with: 1490.00
+    fill_in "Описание", with: "Прекрасный кухонный стул из шведской сосны"
     click_button "Создать товарную позицию"
     expect(page).to have_content "Товарная позиция успешно создана"
     product = Product.last
