@@ -13,7 +13,7 @@ RSpec.feature "Создание продукта" do
     expect(page.current_path).to eq(user_products_path(@john))
     expect(page).to have_content("Мои продукты")
     click_link "Добавить товар"
-    select 'Кухонная мебель', from: 'furn_category'
+    select 'Кухонная мебель', from: 'product[product_category]'
     fill_in "Наименование", with: "Кухонный стул"
     fill_in "Ширина", with: 50
     fill_in "Глубина", with: 60

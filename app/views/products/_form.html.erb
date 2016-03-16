@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for([current_user, @product], :html => {class: "form-horizontal", role: "form"}) do |f| %>
+      <% if @product.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@product.errors.count, "ошибка") %>
+            препятствуют созданию товарной позиции: </h2>
+          <ul>
+            <% @product.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <div class="control-label col-md-2">
+          <%= f.label :product_category, "Категория" %>
+        </div>
+        <div class="col-md-4">
+          <%= f.select(:product_category, options_for_select([['Кухонная мебель', 1], ['Мебель для гостинной', 2]]), {}, {class: "form-control"}) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
