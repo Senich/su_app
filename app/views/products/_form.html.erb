@@ -13,14 +13,97 @@
         </div>
       <% end %>
 
+    <div id="create-form">
       <div class="form-group">
-        <div class="control-label col-md-2">
+        <div class="control-label col-md-4">
           <%= f.label :product_category, "Категория" %>
         </div>
         <div class="col-md-4">
-          <%= f.select(:product_category, options_for_select([['Кухонная мебель', 1], ['Мебель для гостинной', 2]]), {}, {class: "form-control"}) %>
+          <%= f.select(:product_category, options_for_select([['Мебель для гостинной', 1], ['Кухонная мебель', 2]]), {}, {class: "form-control"}) %>
         </div>
       </div>
+
+      <div class="form-group">
+        <div class="control-label col-md-4">
+          <%= f.label :name, "Наименование" %>
+        </div>
+        <div class="col-md-4">
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="control-label col-md-4">
+          <%= f.label :width, "Ширина" %>
+        </div>
+        <div class="col-md-2">
+          <%= f.text_field :width, class: "form-control" %>
+        </div>
+        <div class="control-label">
+          <p class="text-left">мм</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="control-label col-md-4">
+          <%= f.label :height, "Высота" %>
+        </div>
+        <div class="col-md-2">
+          <%= f.text_field :height, class: "form-control" %>
+        </div>
+        <div class="control-label">
+          <p class="text-left">мм</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="control-label col-md-4">
+          <%= f.label :depth, "Глубина" %>
+        </div>
+        <div class="col-md-2">
+          <%= f.text_field :depth, class: "form-control" %>
+        </div>
+        <div class="control-label">
+          <p class="text-left">мм</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="control-label col-md-4">
+          <%= f.label :color, "Цвет" %>
+        </div>
+        <div class="col-md-4">
+          <%= f.select(:color, options_for_select([['Белый', 1], ['Чёрный', 2], ['Красный', 3], ['Зелёный',4]]), {}, {class: "form-control"}) %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="control-label col-md-4">
+          <%= f.label :price, "Стоимость" %>
+        </div>
+        <div class="col-md-2">
+          <%= f.text_field :price, class: "form-control" %>
+        </div>
+        <div class="control-label">
+          <p class="text-left">руб.</p>
+        </div>
+      </div>
+
+       <div class="form-group">
+        <div class="control-label col-md-4">
+          <%= f.label :description, "Описание" %><br>
+        </div>
+        <div class="col-md-4">
+          <%= f.text_area :description, class: "form-control", rows: "10" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-offset-4 col-md-10">
+          <%= f.submit "Создать товарную позицию", class: "btn btn-primary btn-md" %>
+        </div>
+      </div>
+    </div>  
     <% end %>
   </div>
 </div>

@@ -18,11 +18,11 @@ RSpec.feature "Создание продукта" do
     fill_in "Ширина", with: 50
     fill_in "Глубина", with: 60
     fill_in "Высота", with: 100
-    select "Белый", from: 'product_color'
+    select "Чёрный", from: 'product[color]'
     fill_in "Стоимость", with: 1490.00
     fill_in "Описание", with: "Прекрасный кухонный стул из шведской сосны"
     click_button "Создать товарную позицию"
-    expect(page).to have_content "Товарная позиция успешно создана"
+    expect(page).to have_content "Товарная позиция успешно создана."
     product = Product.last
     expect(page.current_path).to eq(user_product_path(@john, product))
   end
