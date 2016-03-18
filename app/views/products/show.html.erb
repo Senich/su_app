@@ -1,0 +1,47 @@
+<div class="col-xs-12 col-md-10 col-md-offset-1">
+  <div>    
+  	  <h2 class="show-header">
+  	  	Информация о товаре <%= "#{@product.name}" %>
+  	  </h2>
+  </div>
+
+  <div class="col-xs-12 col-md-10 well member">
+    <div class="col-xs-4">
+      <strong>Категория:</strong>
+    </div>
+    <div class="col-xs-8 text-right">
+      <%= @product.product_category %>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-10 well member">
+    <div class="col-xs-4">
+      <strong>Описание:</strong>
+    </div>
+    <div class="col-xs-8 text-right">
+      <%= truncate(@product.description, length: 50) %>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-10 well member">
+    <div class="col-xs-4">
+      <strong>Цвет:</strong>
+    </div>
+    <div class="col-xs-8 text-right">
+      <%= @product.color %>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-10 well member">
+    <div class="col-xs-4">
+      <strong>Стоимость:</strong>
+    </div>
+    <div class="col-xs-8 text-right">
+      <%= @product.price %>
+    </div>
+  </div>
+
+  <br>
+  <br>
+  <div class="col-xs-12 col-md-10 member">
+    <%= link_to "Back", user_products_path(current_user), class: "btn btn-primary btn-md" %>
+  </div>
+
+</div>

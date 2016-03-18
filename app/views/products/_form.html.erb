@@ -19,7 +19,7 @@
           <%= f.label :product_category, "Категория" %>
         </div>
         <div class="col-md-4">
-          <%= f.select(:product_category, options_for_select([['Мебель для гостинной', 1], ['Кухонная мебель', 2]]), {}, {class: "form-control"}) %>
+          <%= f.select(:product_category, options_for_select(['Мебель для гостинной', 'Кухонная мебель']), {}, {class: "form-control"}) %>
         </div>
       </div>
 
@@ -73,7 +73,7 @@
           <%= f.label :color, "Цвет" %>
         </div>
         <div class="col-md-4">
-          <%= f.select(:color, options_for_select([['Белый', 1], ['Чёрный', 2], ['Красный', 3], ['Зелёный',4]]), {}, {class: "form-control"}) %>
+          <%= f.select(:color, options_for_select(['Белый', 'Чёрный', 'Красный', 'Зелёный', 'Жёлтый']), {}, {class: "form-control"}) %>
         </div>
       </div>
 

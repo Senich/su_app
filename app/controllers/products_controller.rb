@@ -4,6 +4,11 @@ before_action :authenticate_user!
 before_action :set_product, except: [:index, :new, :create]
 
   def index
+  	@products = current_user.products.all
+  end
+
+  def show
+
   end
 
   def new
@@ -25,6 +30,10 @@ before_action :set_product, except: [:index, :new, :create]
 
   def products_params
   	params.require(:product).permit(:name, :width, :height, :depth, :color, :price, :product_category, :description)
+  end
+
+  def set_product  	
+  	@product = current_user.products.find(params[:id])
   end
 
 end
