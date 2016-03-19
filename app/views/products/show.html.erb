@@ -1,4 +1,4 @@
-<div class="col-xs-12 col-md-10 col-md-offset-1">
+<div class="col-xs-12 col-md-10 col-md-offset-2">
   <div>    
   	  <h2 class="show-header">
   	  	Информация о товаре <%= "#{@product.name}" %>
@@ -18,7 +18,7 @@
       <strong>Описание:</strong>
     </div>
     <div class="col-xs-8 text-right">
-      <%= truncate(@product.description, length: 50) %>
+      <%= @product.description %>
     </div>
   </div>
   <div class="col-xs-12 col-md-10 well member">
@@ -41,7 +41,8 @@
   <br>
   <br>
   <div class="col-xs-12 col-md-10 member">
-    <%= link_to "Back", user_products_path(current_user), class: "btn btn-primary btn-md" %>
+    <%= link_to "Назад", user_products_path(current_user), class: "btn btn-primary btn-md" %>
+    <td><%= link_to "Редактировать", [:edit, current_user, @product], class: "btn btn-primary btn-md" %></td>
   </div>
 
 </div>

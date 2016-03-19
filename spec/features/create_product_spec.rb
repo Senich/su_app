@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 RSpec.feature "Создание продукта" do
 
   before do
@@ -7,11 +8,12 @@ RSpec.feature "Создание продукта" do
     login_as(@john)
   end
 
+
   scenario "Пользователь создаёт продукт" do
     visit "/"
     click_link "Личный кабинет"
     expect(page.current_path).to eq(user_products_path(@john))
-    expect(page).to have_content("Мои продукты")
+    expect(page).to have_content("Мои товарные позиции")
     click_link "Добавить товар"
     select 'Кухонная мебель', from: 'product[product_category]'
     fill_in "Наименование", with: "Кухонный стул"
