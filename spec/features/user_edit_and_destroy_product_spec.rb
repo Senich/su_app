@@ -7,7 +7,7 @@ RSpec.feature "Пользователь" do
                          last_name: "Doe")
     @john_product = @john.products.create!(name: "Nice chair", width: 10, depth: 20, height: 40,
                                            description: "Beatiful white chair", color: "White", price: 12990,
-                                           product_category: "Bedroom furniture")
+                                           category: "Bedroom furniture")
     login_as(@john)
   end
 

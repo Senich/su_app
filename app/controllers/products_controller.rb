@@ -52,7 +52,7 @@ before_action :set_product, except: [:index, :new, :create]
   private 
 
   def products_params
-  	params.require(:product).permit(:name, :width, :height, :depth, :color, :price, :product_category, :description)
+  	params.require(:product).permit(:name, :width, :height, :depth, :color, :price, :category, :description)
   end
 
   def set_product  	
