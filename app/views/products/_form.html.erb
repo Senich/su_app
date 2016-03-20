@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <%= form_for([current_user, @product], :html => {class: "form-horizontal", role: "form"}) do |f| %>
+    <%= form_for([current_user, @product], :html => {:multipart => true, class: "form-horizontal", role: "form"}) do |f| %>
       <% if @product.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@product.errors.count, "ошибка") %>
@@ -96,6 +96,17 @@
         <div class="col-md-4">
           <%= f.text_area :description, class: "form-control", rows: "10" %>
         </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.fields_for :product_attachments do |p| %>
+          <div class="control-label col-md-4">
+            <%= p.label :picture, "Изображения" %>
+          </div>
+          <div class="col-md-4">
+            <%= p.file_field :picture, multiple: true, name: "product_attachments[picture][]" %>
+          </div>
+        <% end %>
       </div>
 
       <div class="form-group">

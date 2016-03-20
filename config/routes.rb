@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
 
+  get 'product_attachment/show'
+
   devise_for :users, :controllers => { registrations: 'registrations'}
 
   resources :users do
     resources :products
   end
+
+  resources :product_attachments
 
   root to: 'dashboard#index'
   # The priority is based upon order of creation: first created -> highest priority.

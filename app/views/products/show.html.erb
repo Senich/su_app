@@ -13,6 +13,7 @@
       <%= @product.category %>
     </div>
   </div>
+
   <div class="col-xs-12 col-md-10 well member">
     <div class="col-xs-4">
       <strong>Описание:</strong>
@@ -21,6 +22,7 @@
       <%= @product.description %>
     </div>
   </div>
+
   <div class="col-xs-12 col-md-10 well member">
     <div class="col-xs-4">
       <strong>Цвет:</strong>
@@ -29,12 +31,25 @@
       <%= @product.color %>
     </div>
   </div>
+
   <div class="col-xs-12 col-md-10 well member">
     <div class="col-xs-4">
       <strong>Стоимость:</strong>
     </div>
     <div class="col-xs-8 text-right">
       <%= @product.price %>
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-md-10 well memmber">
+    <div class="col-xs-4">
+      <strong>Изображения:</strong>
+    </div>
+    <div class="col-xs-8">
+      <% @product_attachments.each do |p| %>
+        <%= image_tag p.picture_url %>
+        <%= link_to "Изменить", edit_product_attachment_path(p) %>
+      <% end %>
     </div>
   </div>
 
