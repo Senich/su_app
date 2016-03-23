@@ -19,8 +19,11 @@ before_action :set_product, except: [:index, :new, :create]
   def create
   	@product = current_user.products.new(products_params)
   	if @product.save
-      params[:product_attachments]['picture'].each do |p|
-        @product_attachment = @product.product_attachments.create!(:picture => p)
+  	  # если картинки приложены то создаём соответствующую запись
+  	  if params[:product_attachments] != nil
+        params[:product_attachments]['picture'].each do |p|
+          @product_attachment = @product.product_attachments.create!(:picture => p)
+        end
       end
   		flash[:success] = 'Товарная позиция успешно создана.'
   		redirect_to [current_user, @product]
