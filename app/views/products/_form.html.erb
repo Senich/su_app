@@ -99,13 +99,23 @@
       </div>
 
       <div class="form-group">
-        <%= f.fields_for :product_attachments do |p| %>
-          <div class="control-label col-md-4">
-            <%= p.label :picture, "Изображения" %>
-          </div>
-          <div class="col-md-4">
-            <%= p.file_field :picture, multiple: true, name: "product_attachments[picture][]" %>
-          </div>
+        <% if @product.new_record? %>
+          <%= f.fields_for :product_attachments do |p| %>
+            <div class="control-label col-md-4">
+              <%= p.label :picture, "Изображения" %>
+            </div>
+            <div class="col-md-4">
+              <%= p.file_field :picture, multiple: true, name: "product_attachments[picture][]" %>
+            </div>
+          <% end %>
+        <% else %>
+            <div class="control-label col-md-4"><strong>Изображения</strong></div>
+            <div class="col-md-4">
+              <% @product.product_attachments.each do |p| %>
+                <%= image_tag p.picture_url, class: "pic" %>
+                <%= link_to "Изменить", edit_product_attachment_path(p) %>
+              <% end %>
+            </div>
         <% end %>
       </div>
 

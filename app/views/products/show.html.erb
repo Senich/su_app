@@ -48,7 +48,6 @@
     <div class="col-xs-8">
       <% @product_attachments.each do |p| %>
         <%= image_tag p.picture_url %>
-        <%= link_to "Изменить", edit_product_attachment_path(p) %>
       <% end %>
     </div>
   </div>
