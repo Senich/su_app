@@ -40,7 +40,11 @@ before_action :set_product, except: [:index, :new, :create]
   def update
     if @product.update(products_params)
       flash[:success] = 'Сведения о товаре обновлены.'
-      @product_attachment = @product.product_attachments.create!(:picture => params[:product]['picture'])
+      if params[:add_product_attachments] != nil
+        params[:add_product_attachments]['picture'].each do |p|
+          @product_attachment = @product.product_attachments.create!(:picture => p)
+        end
+      end
       redirect_to [current_user, @product]
     else
       flash[:danger] = 'Не удалось обновить сведения о товаре'
