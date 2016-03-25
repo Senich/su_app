@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-md-12">
-    <%= form_for([current_user, @product], :html => {:multipart => true, class: "form-horizontal", role: "form"}) do |f| %>
+    <%= form_for([current_user, @product], :html => {:multipart => true, class: 'form-horizontal', role: 'form'}) do |f| %>
       <% if @product.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@product.errors.count, "ошибка") %>
+          <h2><%= pluralize(@product.errors.count, 'ошибка') %>
             препятствуют созданию товарной позиции: </h2>
           <ul>
             <% @product.errors.full_messages.each do |message| %>
@@ -16,7 +16,7 @@
     <div id="create-form">
       <div class="form-group">
         <div class="control-label col-md-4">
-          <%= f.label :category, "Категория" %>
+          <%= f.label :category, 'Категория' %>
         </div>
         <div class="col-md-4">
           <%= f.select(:category, options_for_select(['Мебель для гостинной', 'Кухонная мебель']), {}, {class: "form-control"}) %>
@@ -25,19 +25,19 @@
 
       <div class="form-group">
         <div class="control-label col-md-4">
-          <%= f.label :name, "Наименование" %>
+          <%= f.label :name, 'Наименование' %>
         </div>
         <div class="col-md-4">
-          <%= f.text_field :name, class: "form-control" %>
+          <%= f.text_field :name, class: 'form-control' %>
         </div>
       </div>
 
       <div class="form-group">
         <div class="control-label col-md-4">
-          <%= f.label :width, "Ширина" %>
+          <%= f.label :width, 'Ширина' %>
         </div>
         <div class="col-md-2">
-          <%= f.text_field :width, class: "form-control" %>
+          <%= f.text_field :width, class: 'form-control' %>
         </div>
         <div class="control-label">
           <p class="text-left">см</p>
@@ -46,10 +46,10 @@
 
       <div class="form-group">
         <div class="control-label col-md-4">
-          <%= f.label :height, "Высота" %>
+          <%= f.label :height, 'Высота' %>
         </div>
         <div class="col-md-2">
-          <%= f.text_field :height, class: "form-control" %>
+          <%= f.text_field :height, class: 'form-control' %>
         </div>
         <div class="control-label">
           <p class="text-left">см</p>
@@ -61,7 +61,7 @@
           <%= f.label :depth, "Глубина" %>
         </div>
         <div class="col-md-2">
-          <%= f.text_field :depth, class: "form-control" %>
+          <%= f.text_field :depth, class: 'form-control' %>
         </div>
         <div class="control-label">
           <p class="text-left">см</p>
@@ -70,10 +70,10 @@
 
       <div class="form-group">
         <div class="control-label col-md-4">
-          <%= f.label :color, "Цвет" %>
+          <%= f.label :color, 'Цвет' %>
         </div>
         <div class="col-md-4">
-          <%= f.select(:color, options_for_select(['Белый', 'Чёрный', 'Красный', 'Зелёный', 'Жёлтый']), {}, {class: "form-control"}) %>
+          <%= f.select(:color, options_for_select(%w(Белый Чёрный Красный Зелёный Жёлтый)), {}, {class: 'form-control'}) %>
         </div>
       </div>
 
@@ -94,7 +94,7 @@
           <%= f.label :description, 'Описание' %><br>
         </div>
         <div class="col-md-4">
-          <%= f.text_area :description, class: "form-control", rows: "10" %>
+          <%= f.text_area :description, class: 'form-control', rows: '10' %>
         </div>
       </div>
 
@@ -112,9 +112,9 @@
             <div class="control-label col-md-4"><strong>Изображения</strong></div>
             <div class="col-md-4">
               <% @product.product_attachments.each do |p| %>
-                <%= image_tag p.picture_url, class: "pic" %>
-                <%= link_to "Удалить", product_attachment_path(p),
-                            method: :delete , data: { confirm: "Вы уверены?"} %>
+                <%= image_tag p.picture_url, class: 'pic' %>
+                <%= link_to 'Удалить', product_attachment_path(p),
+                            method: :delete , data: { confirm: 'Вы уверены?'} %>
               <% end %>
               <%= f.file_field :picture %>
             </div>
@@ -123,8 +123,8 @@
 
       <div class="form-group">
         <div class="col-md-offset-4 col-md-10">
-          <%= f.submit @product.new_record? ? "Создать товарную позицию" : "Сохранить",
-                       class: "btn btn-primary btn-md" %>
+          <%= f.submit @product.new_record? ? 'Создать товарную позицию' : 'Сохранить',
+                       class: 'btn btn-primary btn-md' %>
         </div>
       </div>
     </div>  
