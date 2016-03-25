@@ -27,7 +27,7 @@
 		      	<td><%= "#{product.width}x#{product.height}x#{product.depth}" %></td>
 		      	<td><%= product.price %></td>
 		      	<td><%= link_to "Редактировать", [:edit, current_user, product] %></td>
-		      	<td><%= link_to "Удалить", [current_user, product], method: :delete, data: { confirm: "Are you sure?"} %></td>
+		      	<td><%= link_to "Удалить", [current_user, product], method: :delete, data: { confirm: "Вы уверены?"} %></td>
 		      </tr>
 		    <% end %>    	
 		  </tbody>  

@@ -1,6 +1,6 @@
 class ProductAttachment < ActiveRecord::Base
   mount_uploader :picture, PictureUploader
-  belongs_to :product, dependent: :destroy
+  belongs_to :product
   after_destroy :delete_picture
 
   private

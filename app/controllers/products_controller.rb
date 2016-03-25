@@ -39,20 +39,21 @@ before_action :set_product, except: [:index, :new, :create]
 
   def update
     if @product.update(products_params)
-      flash[:success] = "Сведения о товаре обновлены."
+      flash[:success] = 'Сведения о товаре обновлены.'
+      @product_attachment = @product.product_attachments.create!(:picture => params[:product]['picture'])
       redirect_to [current_user, @product]
     else
-      flash[:danger] = "Не удалось обновить сведения о товаре"
+      flash[:danger] = 'Не удалось обновить сведения о товаре'
       render :edit
     end
   end
 
   def destroy
     if @product.destroy
-      flash[:success] = "Товарная позиция успешно удалена."
+      flash[:success] = 'Товарная позиция успешно удалена.'
       redirect_to user_products_path(current_user)
     else
-      flash[:danger] = "Не удалось удалить товарную позицию"
+      flash[:danger] = 'Не удалось удалить товарную позицию'
     end
   end
 
