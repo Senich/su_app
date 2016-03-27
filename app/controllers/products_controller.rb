@@ -18,13 +18,13 @@ before_action :set_product, except: [:index, :new, :create]
 
   def create
   	@product = current_user.products.new(products_params)
-  	if @product.save
-  	  # если картинки приложены то создаём соответствующую запись
-  	  if params[:product_attachments] != nil
-        params[:product_attachments]['picture'].each do |p|
-          @product_attachment = @product.product_attachments.create!(:picture => p)
-        end
+    # если картинки приложены то создаём соответствующую запись
+    if params[:product_attachments] != nil
+      params[:product_attachments]['picture'].each do |p|
+        @product_attachment = @product.product_attachments.build(:picture => p)
       end
+    end
+  	if @product.save
   		flash[:success] = 'Товарная позиция успешно создана.'
   		redirect_to [current_user, @product]
   	else
@@ -38,13 +38,13 @@ before_action :set_product, except: [:index, :new, :create]
   end
 
   def update
+    if params[:add_product_attachments] != nil
+      params[:add_product_attachments]['picture'].each do |p|
+        @product_attachment = @product.product_attachments.create(:picture => p) if @product.product_attachments.size < 3
+      end
+    end
     if @product.update(products_params)
       flash[:success] = 'Сведения о товаре обновлены.'
-      if params[:add_product_attachments] != nil
-        params[:add_product_attachments]['picture'].each do |p|
-          @product_attachment = @product.product_attachments.create!(:picture => p)
-        end
-      end
       redirect_to [current_user, @product]
     else
       flash[:danger] = 'Не удалось обновить сведения о товаре'
