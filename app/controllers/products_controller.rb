@@ -41,7 +41,7 @@ before_action :set_product, except: [:index, :new, :create]
     if @product.update_attributes(products_params)
       if params[:product_attachments] != nil
         params[:product_attachments]['picture'].each do |p|
-          @product_attachment = @product.product_attachments.create(:picture => p)
+          @product_attachment = @product.product_attachments.create(:picture => p) if @product.product_attachments.size < 6
         end
       end
       flash[:success] = 'Сведения о товаре обновлены.'
