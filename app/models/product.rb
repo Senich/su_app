@@ -7,7 +7,7 @@ class Product < ActiveRecord::Base
 
   def validate_attachments_count
     if self.product_attachments.size > 6
-      errors.add(:product_attachments, 'Количество изображений не может быть больше трёх')
+      errors.add(:product_attachments, 'Количество изображений не может быть больше 6')
     end
   end
 end
