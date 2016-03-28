@@ -116,11 +116,9 @@
                 <%= link_to 'Удалить', product_attachment_path(p),
                             method: :delete , data: { confirm: 'Вы уверены?'} %>
               <% end %>
-              <!-- если обновляем существущую запись, то запись products_attachments в params изменяем,
-              чтобы потом во вьюхе не было кучи диалоговых элементов для загрузки -->
-              <%= f.fields_for :add_product_attachments do |p| %>
+              <%= f.fields_for :product_attachments, @product.product_attachments.new do |p| %>
                 <div class="col-md-4">
-                  <%= p.file_field :picture, multiple: true, name: 'add_product_attachments[picture][]' %>
+                  <%= p.file_field :picture, multiple: true, name: 'product_attachments[picture][]' %>
                 </div>
               <% end %>
             </div>
