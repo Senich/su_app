@@ -4,5 +4,28 @@ ru:
       user:
         email: "E-mail"
         password: "Пароль"
+      product:
+        name: "Название"
+        width: "Параметр ширины"
+        height: "Параметр длины"
+        depth: "Параметр глубины"
+        price: "Стоимость"
+        color: "Цвет"
+        category: "Категория"
     models:
       user: "Пользователь"
+      product: "Товарная позиция"
+  misc:
+    errors:
+      zero: "нет ошибок"
+      one: "ошибка"
+      few: "ошибки"
+      many: "ошибок"
+    prevent:
+      zero: "препятствует"
+      one: "препятствует"
+      few: "препятствуют"
+      many: "препятствуют"
+
+
+

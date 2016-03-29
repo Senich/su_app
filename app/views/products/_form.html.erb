@@ -3,8 +3,8 @@
     <%= form_for([current_user, @product], :html => {:multipart => true, class: 'form-horizontal', role: 'form'}) do |f| %>
       <% if @product.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@product.errors.count, 'ошибка') %>
-            препятствуют созданию товарной позиции: </h2>
+          <h2><%= @product.errors.count  %> <%= t('misc.errors', count: @product.errors.count) %>
+            <%= t('misc.prevent', count: @product.errors.count) %> созданию товарной позиции: </h2>
           <ul>
             <% @product.errors.full_messages.each do |message| %>
               <li><%= message %></li>
