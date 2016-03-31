@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
 
 before_action :authenticate_user!
 before_action :set_product, except: [:index, :new, :create]
-before_action :authorize_product, except: [:index, :new]
+before_action :authorize_product, except: [:index, :new, :create]
 
 
   def index
@@ -21,6 +21,7 @@ before_action :authorize_product, except: [:index, :new]
 
   def create
   	@product = current_user.products.new(products_params)
+  	authorize @product
     # если картинки приложены то создаём соответствующую запись
     if params[:product_attachments] != nil
       params[:product_attachments]['picture'].each do |p|

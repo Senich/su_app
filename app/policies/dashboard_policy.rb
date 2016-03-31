@@ -1,5 +1,6 @@
 class DashboardPolicy < Struct.new(:user, :dashboard)
-  class Scope < Scope
+  
+  class Scope < Struct.new(:user, :scope)
     def resolve
       scope
     end
@@ -8,6 +9,4 @@ class DashboardPolicy < Struct.new(:user, :dashboard)
   def index?
     true
   end
-  
-  
 end
