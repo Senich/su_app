@@ -2,9 +2,11 @@ class ProductsController < ApplicationController
 
 before_action :authenticate_user!
 before_action :set_product, except: [:index, :new, :create]
+before_action :authorize_product, except: [:index, :new]
+
 
   def index
-  	@products = current_user.products.all
+  	@products = policy_scope(current_user.products.all)
   end
 
   def show
@@ -13,6 +15,7 @@ before_action :set_product, except: [:index, :new, :create]
 
   def new
     @product = Product.new
+    authorize @product
     @product_attachment = @product.product_attachments.build
   end
 
@@ -34,7 +37,7 @@ before_action :set_product, except: [:index, :new, :create]
   end
 
   def edit
-
+    
   end
 
   def update
@@ -70,6 +73,10 @@ before_action :set_product, except: [:index, :new, :create]
 
   def set_product  	
   	@product = current_user.products.find(params[:id])
+  end
+  
+  def authorize_product
+    authorize @product
   end
 
 end
