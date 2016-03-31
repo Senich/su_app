@@ -1,6 +1,6 @@
 class DashboardPolicy < Struct.new(:user, :dashboard)
   
-  class Scope < Struct.new(:user, :scope)
+  class Scope
     def resolve
       scope
     end

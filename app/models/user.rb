@@ -8,4 +8,16 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
 
+  def make_admin!
+    self.update(role: 'admin')
+  end
+
+  def make_seller!
+    self.update(role: 'seller')
+  end
+
+  def make_user!
+    self.updated(role: 'user')
+  end
+
 end

@@ -6,27 +6,24 @@ class ProductPolicy < ApplicationPolicy
   end
   
   def create? 
-    user && user.role == 'seller'
+    user && user.role == 'seller' || user.role == 'admin'
   end
   
   def new? 
-    user && user.role == 'seller'
+    create?
   end
   
-  def show?
-    user && user.role == 'seller'
-  end
-  
+
   def destroy?
-    user && user.role == 'seller'
+    create?
   end
   
   def update?
-    user && user.role == 'seller'
+    create?
   end
   
   def edit?
-    user && user.role == 'seller'
+    create?
   end
   
   
