@@ -3,10 +3,12 @@ class ProductsController < ApplicationController
 before_action :authenticate_user!
 before_action :set_product, except: [:index, :new, :create]
 before_action :authorize_product, except: [:index, :new, :create]
+before_action :check_owner, only: [:edit, :update, :destroy]
+
 
 
   def index
-  	@products = policy_scope(current_user.products.all)
+  	@products = policy_scope(Product)
   end
 
   def show
@@ -38,7 +40,6 @@ before_action :authorize_product, except: [:index, :new, :create]
   end
 
   def edit
-    
   end
 
   def update
@@ -72,12 +73,20 @@ before_action :authorize_product, except: [:index, :new, :create]
     product_attachments_attributes: [:id, :product_id, :picture, :remove_picture])
   end
 
-  def set_product  	
-  	@product = current_user.products.find(params[:id])
+  def set_product
+  # 	@product = current_user.products.find(params[:id])
+    @product = Product.find(params[:id])
   end
   
   def authorize_product
     authorize @product
+  end
+  
+  def check_owner
+      if current_user.id != @product.user_id
+        flash[:danger] = "Вы не можете редактировать чужие товарные позиции!"
+        redirect_to user_products_path(current_user)
+      end
   end
 
 end

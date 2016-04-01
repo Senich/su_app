@@ -1,7 +1,12 @@
 class ProductPolicy < ApplicationPolicy
+  
   class Scope < Scope
     def resolve
-      scope
+      if user.role == 'admin'
+        scope.all
+      else
+        scope.where(user_id: user.id)
+      end
     end
   end
   

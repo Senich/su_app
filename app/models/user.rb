@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   end
 
   def make_user!
-    self.updated(role: 'user')
+    self.update(role: 'user')
   end
 
 end
