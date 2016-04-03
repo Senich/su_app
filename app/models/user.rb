@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
   has_many :products
 
   validates :first_name, presence: true
@@ -18,6 +19,18 @@ class User < ActiveRecord::Base
 
   def make_user!
     self.update(role: 'user')
+  end
+
+  def admin?
+    self.role == 'admin'
+  end
+
+  def seller?
+    self.role == 'seller'
+  end
+
+  def user?
+    self.role == 'user'
   end
 
 end

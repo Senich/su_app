@@ -17,18 +17,22 @@ class ProductPolicy < ApplicationPolicy
   def new? 
     create?
   end
+
+  def show?
+    true
+  end
   
 
   def destroy?
-    create?
+    edit?
   end
   
   def update?
-    create?
+    edit?
   end
   
   def edit?
-    create?
+    user.role == 'admin' || @record.user == user
   end
   
   

@@ -1,9 +1,8 @@
 class ProductsController < ApplicationController
 
-before_action :authenticate_user!
+before_action :authenticate_user!, except: :show
 before_action :set_product, except: [:index, :new, :create]
 before_action :authorize_product, except: [:index, :new, :create]
-before_action :check_owner, only: [:edit, :update, :destroy]
 
 
 
@@ -74,7 +73,6 @@ before_action :check_owner, only: [:edit, :update, :destroy]
   end
 
   def set_product
-  # 	@product = current_user.products.find(params[:id])
     @product = Product.find(params[:id])
   end
   
@@ -82,11 +80,4 @@ before_action :check_owner, only: [:edit, :update, :destroy]
     authorize @product
   end
   
-  def check_owner
-      if current_user.id != @product.user_id
-        flash[:danger] = "Вы не можете редактировать чужие товарные позиции!"
-        redirect_to user_products_path(current_user)
-      end
-  end
-
 end
