@@ -16,6 +16,17 @@ FactoryGirl.define do
     trait :user do
       role 'user'
     end
+    
+    factory :user_with_products do
+      transient do 
+        product_count  1
+      end
+      
+      after(:create) do |user, evaluator|
+        create_list(:product, evaluator.product_count, user: user)
+      end
+      
+    end
 
   end
 end

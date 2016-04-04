@@ -3,15 +3,15 @@ require 'rails_helper'
 RSpec.feature 'Пользователь' do
 
   before do
-    @john = User.create!(email: 'user@example.com', password: 'password', first_name: 'John',
-                         last_name: 'Doe')
-    @john_product = @john.products.create!(name: 'Nice chair', width: 10, depth: 20, height: 40,
-                                           description: 'Beautiful white chair', color: 'White', price: 12990,
-                                           category: 'Bedroom furniture')
+   
+    @john = FactoryGirl.create(:user_with_products, :seller)
+    @john_product = @john.products.first
+   
     login_as(@john)
   end
 
   scenario 'вводит корректные новые данные' do
+    expect(@john.products.count).to eq(1)
     visit '/'
     click_link 'Личный кабинет'
     link = "a[href='/users/#{@john.id}/products/#{@john_product.id}/edit']"

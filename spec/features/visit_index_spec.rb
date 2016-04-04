@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Visist landing page" do
+RSpec.feature "Visit landing page" do
   scenario do
     visit "/"
     expect(page).to have_content("Поиск мебели")
