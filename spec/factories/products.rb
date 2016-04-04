@@ -1,3 +1,4 @@
+require 'faker'
 FactoryGirl.define do
   factory :product do
     name 'Chair'
@@ -8,5 +9,18 @@ FactoryGirl.define do
     category 'Мебель для гостинной'
     description Faker::Lorem.sentence
     user
+
+    factory :product_with_attachments do
+
+      transient do
+        attachments_count 1
+      end
+
+      after(:create) do |product, evaluator|
+        create_list(:product_attachment, evaluator.attachments_count, product: product )
+      end
+
+    end
+
   end
 end
