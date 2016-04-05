@@ -3,9 +3,7 @@ require 'rails_helper'
 RSpec.feature 'Создание продукта' do
 
   before do
-    @john = User.create!(email: 'user@example.com', password: 'password', first_name: 'John',
-    last_name: 'Doe')
-    @john.make_seller!
+    @john = FactoryGirl.create(:user, :seller)
     login_as(@john)
   end
 
