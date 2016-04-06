@@ -30,20 +30,24 @@ RSpec.feature 'Пользователь(seller)' do
     login_as(@john)
     visit '/'
     click_link 'Личный кабинет'
-    link = "//a[contains(@href, '/users/#{@john.id}/products/#{@john_product.id}') and .//text()='Удалить'] "
-    find(:xpath, link).click
+    
+    expect {
+      link = "//a[contains(@href, '/users/#{@john.id}/products/#{@john_product.id}') and .//text()='Удалить'] "
+      find(:xpath, link).click
+    }.to change(Product, :count).by(-1)
+    
     expect(page).to have_content('Товарная позиция успешно удалена.')
   end
   
   scenario 'другой селлер не может удалять или редактировать товары первого' do
-    @pete = FactoryGirl.create(:user, :seller, email: 'pete@exampl.com')
+    @pete = FactoryGirl.create(:user, :seller)
     login_as(@pete)
     visit "/users/#{@john.id}/products/#{@john_product.id}/edit"
     expect(page).to have_content("Вы не авторизованы на выполнение этого действия!")
   end
   
   scenario 'администратор может редактировать чужие товары' do
-    @pete = FactoryGirl.create(:user, :admin, email: 'pete@exampl.com')
+    @pete = FactoryGirl.create(:user, :admin)
     login_as(@pete)
     visit "/users/#{@john.id}/products/#{@john_product.id}/edit"
     expect(page).to have_content ("Редактирование информации о товаре #{ @john_product.name }")
