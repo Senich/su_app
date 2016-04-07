@@ -1,11 +1,19 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+  get 'dashboard/index'
+  end
+
   get 'product_attachment/show'
 
   devise_for :users, :controllers => { registrations: 'registrations'}
 
   resources :users do
     resources :products
+  end
+
+  namespace :admin do
+    get '', to: 'dashboard#index', as: '/'
   end
 
   resources :product_attachments
