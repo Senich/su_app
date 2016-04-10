@@ -2,7 +2,7 @@ class UserPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       if user.admin?
-        scope.all
+        scope.where(role: 'seller')
       else
         scope.where(user_id: user.id)
       end
