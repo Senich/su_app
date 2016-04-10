@@ -23,6 +23,8 @@ feature 'Управление пользователями' do
     fill_in 'Имя', with: 'John'
     fill_in 'Фамилия', with: 'Doe'
     click_button 'Добавить продавца'
+    expect(page).to have_content('Пользователь John Doe успешно создан')
+
   end
 
 end

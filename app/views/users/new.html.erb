@@ -7,6 +7,17 @@
   <div class='row'>
     <div class='col-md-12'>
       <%= form_for(@user, :html => {class: 'form-horizontal', role: 'form' }) do |f| %>
+        <% if @user.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= @user.errors.count  %> <%= t('misc.errors', count: @user.errors.count) %>
+              <%= t('misc.prevent', count: @user.errors.count) %> созданию товарной позиции: </h2>
+            <ul>
+              <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
 
         <div class="form-group">
           <div class="control-label col-md-3">

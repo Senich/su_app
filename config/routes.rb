@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   get 'product_attachment/show'
 
-  devise_for :users, :controllers => { registrations: 'registrations'}
+  devise_for :users, :controllers => { registrations: 'registrations'}, path_prefix: 'auth'
 
   resources :users do
     resources :products
