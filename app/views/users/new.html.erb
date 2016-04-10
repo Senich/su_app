@@ -1,3 +1,70 @@
 <div class="row">
   <h1><p class="text-center">Создание учётной записи продавца</p></h1>
 </div>
+
+<div class="sign_in_up">
+  <h2 class='text-center'>Добавление нового продавца</h2>
+  <div class='row'>
+    <div class='col-md-12'>
+      <%= form_for(@user, :html => {class: 'form-horizontal', role: 'form' }) do |f| %>
+
+        <div class="form-group">
+          <div class="control-label col-md-3">
+            <%= f.label :first_name, text='Имя' %>
+          </div>
+          <div class="col-md-6">
+            <%= f.text_field :first_name, class: 'form-control',
+                             autofocus: true %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="control-label col-md-3">
+            <%= f.label :last_name, text='Фамилия' %>
+          </div>
+          <div class="col-md-6">
+            <%= f.text_field :last_name, class: 'form-control',
+                             autofocus: true %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="control-label col-md-3">
+            <%= f.label :email, text='E-mail' %>
+          </div>
+          <div class="col-md-6">
+            <%= f.email_field :email, class: 'form-control',
+                              autofocus: true %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="control-label col-md-3">
+            <%= f.label :password, text='Пароль' %>
+          </div>
+          <div class="col-md-6">
+            <%= f.password_field :password, class: 'form-control',
+                                 autocomplete: 'off' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="control-label col-md-3">
+            <%= f.label :password_confirmation, 'Подтверждение пароля' %>
+          </div>
+          <div class="col-md-6">
+            <%= f.password_field :password_confirmation, class: 'form-control',
+                                 autocomplete: 'off' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class='col-md-offset-3 col-md-6'>
+            <%= f.submit 'Добавить продавца', class: 'btn btn-primary btn-md' %>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

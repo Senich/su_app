@@ -16,11 +16,13 @@ feature 'Управление пользователями' do
     click_link 'Управление пользователями'
     expect(page).to have_content('Список участников')
     click_link 'Добавить продавца'
-    fill_in 'Email', with: 'newuser@example.com'
-    fill_in 'Компания', with: 'ООО Вектор'
-    find('#password').fill_in 'Password', with: 'secret123'
-    find('#password_confirmation').fill_in 'Password confirmation', with: 'secret123'
-    click_button
+    fill_in 'E-mail', with: 'newuser@example.com'
+    # fill_in 'Компания', with: 'ООО Вектор'
+    fill_in 'Пароль', with: 'secret123'
+    fill_in 'Подтверждение пароля', with: 'secret123'
+    fill_in 'Имя', with: 'John'
+    fill_in 'Фамилия', with: 'Doe'
+    click_button 'Добавить продавца'
   end
 
 end

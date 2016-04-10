@@ -4,6 +4,8 @@ ru:
       user:
         email: "E-mail"
         password: "Пароль"
+        first_name: "Поле имя"
+        last_name: "Поле фамилия"
       product:
         name: "Название"
         width: "Поле ширины"

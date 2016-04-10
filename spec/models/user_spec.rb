@@ -16,7 +16,7 @@ describe User do
 
   it 'Возвращает полное имя' do
     @user = FactoryGirl.build(:user, first_name: 'John', last_name: 'Doe')
-    expect(@user.name).to eq('John Doe')
+    expect(@user.full_name).to eq('John Doe')
   end
 
 
