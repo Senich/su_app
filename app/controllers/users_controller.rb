@@ -19,6 +19,27 @@ class UsersController < ApplicationController
       render :new
     end
   end
+  
+  def edit
+    @user = User.find(params[:id])
+    authorize @user
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if params[:user][:password].blank?
+      params[:user].delete(:password)
+      params[:user].delete(:password_confirmation)
+    end
+    authorize @user
+    if @user.update_attributes(users_params)
+      flash[:success] = 'Сведения успешно обновлены'
+      redirect_to users_path
+    else
+      render :edit
+    end
+      
+  end
 
 
   private

@@ -1,0 +1,74 @@
+<div class='row'>
+  <div class='col-md-12'>
+    <%= form_for(@user, :html => {class: 'form-horizontal', role: 'form' }) do |f| %>
+      <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= @user.errors.count  %> <%= t('misc.errors', count: @user.errors.count) %>
+            <%= t('misc.prevent', count: @user.errors.count) %> созданию товарной позиции: </h2>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <div class="control-label col-md-3">
+          <%= f.label :first_name, text='Имя' %>
+        </div>
+        <div class="col-md-6">
+          <%= f.text_field :first_name, class: 'form-control',
+                           autofocus: true %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="control-label col-md-3">
+          <%= f.label :last_name, text='Фамилия' %>
+        </div>
+        <div class="col-md-6">
+          <%= f.text_field :last_name, class: 'form-control',
+                           autofocus: true %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="control-label col-md-3">
+          <%= f.label :email, text='E-mail' %>
+        </div>
+        <div class="col-md-6">
+          <%= f.email_field :email, class: 'form-control',
+                            autofocus: true %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="control-label col-md-3">
+          <%= f.label :password, text='Пароль' %>
+        </div>
+        <div class="col-md-6">
+          <%= f.password_field :password, class: 'form-control',
+                               autocomplete: 'off' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="control-label col-md-3">
+          <%= f.label :password_confirmation, 'Подтверждение пароля' %>
+        </div>
+        <div class="col-md-6">
+          <%= f.password_field :password_confirmation, class: 'form-control',
+                               autocomplete: 'off' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class='col-md-offset-3 col-md-6'>
+          <%= f.submit @user.new_record? ? 'Добавить продавца' : 'Обновить сведения', class: 'btn btn-primary btn-md' %>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>

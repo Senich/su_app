@@ -39,7 +39,7 @@ feature 'Управление пользователями' do
     link = "a[href='/users/#{@seller.id}/edit']"
     find(link).click
     fill_in 'Имя', with: 'Johnny'
-    click_link 'Обновить сведения'
+    click_button 'Обновить сведения'
     expect(page).to have_content 'Сведения успешно обновлены'
 
   end
