@@ -38,7 +38,17 @@ class UsersController < ApplicationController
     else
       render :edit
     end
-      
+  end
+  
+  def destroy
+    @user = User.find(params[:id])
+    authorize @user
+    if @user.destroy
+      flash[:success] = "Продавец успешно удалён"
+      redirect_to users_path
+    else
+      flash[:danger] = "Не удалось удалить продавца"
+    end
   end
 
 

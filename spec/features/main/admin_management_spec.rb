@@ -29,19 +29,32 @@ feature 'Управление пользователями' do
     }.to change(User, :count).by(1)
   end
 
-  scenario 'админ редактирует а потом удаляет продавца' do
-    @seller = create(:user, :seller)
-    expect(@seller.seller?)
+  scenario 'админ редактирует продавца' do
+    @johnny = create(:user, :seller)
+    expect(@johnny.seller?)
     visit root_path
     link = "//a[contains(@href, '/admin')]"
     page.find(:xpath, link).click
     click_link 'Управление пользователями'
-    link = "a[href='/users/#{@seller.id}/edit']"
+    link = "a[href='/users/#{@johnny.id}/edit']"
     find(link).click
     fill_in 'Имя', with: 'Johnny'
     click_button 'Обновить сведения'
     expect(page).to have_content 'Сведения успешно обновлены'
-
+  end
+  
+  scenario 'админ удаляет продавца' do
+    @johnny = create(:user, :seller)
+    visit root_path
+    link = "//a[contains(@href, '/admin')]"
+    page.find(:xpath, link).click
+    click_link 'Управление пользователями'
+    expect {
+      link = "//a[contains(@href,'/users/#{@johnny.id}') and .//text()='Удалить']"
+      find(:xpath, link).click 
+    }.to change(User, :count).by(-1)
+    expect(page).to have_content('Продавец успешно удалён')
+      
   end
 
 end
