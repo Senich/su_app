@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160403154255) do
+ActiveRecord::Schema.define(version: 20160412183430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "city"
+    t.string   "street"
+    t.string   "building"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "product_attachments", force: :cascade do |t|
     t.integer  "product_id"
@@ -36,6 +50,17 @@ ActiveRecord::Schema.define(version: 20160403154255) do
     t.datetime "updated_at",                          null: false
     t.integer  "user_id"
   end
+
+  create_table "sections", force: :cascade do |t|
+    t.integer  "company_id"
+    t.integer  "address_id"
+    t.text     "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "sections", ["address_id"], name: "index_sections_on_address_id", using: :btree
+  add_index "sections", ["company_id"], name: "index_sections_on_company_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",     null: false
