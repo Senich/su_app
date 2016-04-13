@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(users_params)
+    @user.make_seller!
     authorize @user
     if @user.save
       flash[:success] = "Пользователь #{@user.full_name} успешно создан"

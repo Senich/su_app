@@ -2,12 +2,6 @@ Rails.application.routes.draw do
 
   get 'users/index'
 
-  get 'users/index'
-
-  namespace :admin do
-  get 'dashboard/index'
-  end
-
   get 'product_attachment/show'
 
   devise_for :users, :controllers => { registrations: 'registrations'}, path_prefix: 'auth'

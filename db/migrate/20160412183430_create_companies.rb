@@ -7,6 +7,7 @@ class CreateCompanies < ActiveRecord::Migration
     end
 
     create_table :addresses do |t|
+      t.string :name
       t.string :city
       t.string :street
       t.string :building
