@@ -10,11 +10,13 @@ Rails.application.routes.draw do
     resources :products
   end
 
+  resources :addresses
+
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
   end
 
-  resources :product_attachments
+  resources :product_attachments, only: [:edit, :destroy]
 
   root to: 'dashboard#index'
   # root to: 'products#index'
