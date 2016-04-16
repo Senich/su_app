@@ -18,8 +18,8 @@ Rails.application.routes.draw do
 
   resources :product_attachments, only: [:edit, :destroy]
 
-  root to: 'dashboard#index'
-  # root to: 'products#index'
+  root to: 'dashboard#show'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

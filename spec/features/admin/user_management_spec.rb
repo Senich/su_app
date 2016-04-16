@@ -54,33 +54,6 @@ feature 'Управление пользователями' do
     }.to change(User, :count).by(-1)
     expect(page).to have_content('Продавец успешно удалён')
   end
-  
-  scenario 'админ создаёт адрес мебельного ТЦ' do
-    visit admin_path
-    click_link 'Адреса'
-    expect(page).to have_content('Управление адресами')
-    click_link 'Добавить новый адрес'
-    expect {
-      select 'Москва', from: 'address[city]'
-      fill_in 'Улица', with: 'Московский проспект'
-      fill_in 'Здание', with: '2а'
-      fill_in 'Название магазина или ТЦ', with: 'Мебель-сити'
-      click_button 'Добавить адрес'
-    }.to change(Address, :count).by(1)
-    expect(page).to have_content('Адрес Мебель-сити успешно добавлен')
-    address = Address.last
-    expect(page.current_path).to eq(address_path(address))
-  end
-  
-  scenario 'админ создаёт компанию' do
-    visit admin_path
-    click_link 'Управление компаниями'
-    expect(page).to have_content('Список зарегистрированныых компаний')
-    click_link 'Добавить компанию'
-    fill_in 'Название', with: 'ООО Вектор'
-    fill_in 'Город', with: 'Санкт-Петербург'
-    fill_in 'Улица', with: 'Московский проспект'
-    fill_in 'Дом', with: '23'
-  end
+
 
 end

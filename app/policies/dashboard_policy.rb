@@ -2,11 +2,11 @@ class DashboardPolicy < Struct.new(:user, :dashboard)
   
   class Scope
     def resolve
-      scope
+      scope.all
     end
   end
   
-  def index?
+  def show?
     true
   end
 end

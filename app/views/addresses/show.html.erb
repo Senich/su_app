@@ -1,0 +1,23 @@
+<div class="row">
+  <h1><p class="text-center">Информация об адресе</p></h1>
+</div>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= "#{@address.name}" %></h3>
+      </div>
+      <div class="panel-body">
+        <%= "#{@address.city}, #{@address.street}, #{@address.building}" %>
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <%= link_to 'Редактировать', edit_address_path(@address), class: 'btn btn-primary link' %>
+          <%= link_to 'Удалить', address_path(@address), method: :delete,
+                      data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger link' %>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
