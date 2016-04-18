@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :products
   end
 
+  resources :companies
+
   resources :addresses
 
   namespace :admin do

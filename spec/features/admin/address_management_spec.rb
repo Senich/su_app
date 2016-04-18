@@ -15,7 +15,7 @@ feature 'Управление адресами' do
     expect {
       select 'Москва', from: 'address[city]'
       fill_in 'Улица', with: 'Московский проспект'
-      fill_in 'Здание', with: '2а'
+      fill_in 'Дом', with: '2а'
       fill_in 'Название магазина или ТЦ', with: 'Мебель-сити'
       click_button 'Добавить адрес'
     }.to change(Address, :count).by(1)
@@ -33,7 +33,7 @@ feature 'Управление адресами' do
     click_link 'Редактировать'
     select 'Санкт-Петербург', from: 'address[city]'
     fill_in 'Улица', with: 'Ленинградский проспект'
-    fill_in 'Здание', with: '22'
+    fill_in 'Дом', with: '22'
     click_button 'Обновить данные'
     expect(page).to have_content('Ленинградский проспект')
     expect(page).to have_content('22')
