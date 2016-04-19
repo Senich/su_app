@@ -4,6 +4,9 @@ feature 'Создание компании' do
 
   before :each do
     @admin = create(:user, :admin)
+    create(:address)
+    create(:address, city: 'Воронеж')
+    
     login_as(@admin)
   end
 
@@ -13,9 +16,9 @@ feature 'Создание компании' do
     expect(page).to have_content('Список зарегистрированных компаний')
     click_link 'Добавить компанию'
     fill_in 'Название', with: 'ООО Вектор'
-    fill_in 'Город', with: 'Санкт-Петербург'
-    fill_in 'Улица', with: 'Московский проспект'
-    fill_in 'Дом', with: '23'
+    select 'Москва, Московский проспект, 32а', from: 'address'
+    fill_in 'Номер секции', with: '12B'
+    click_button 'Создать компанию'
   end
 
 
