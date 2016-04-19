@@ -16,7 +16,7 @@ feature 'Создание компании' do
     expect(page).to have_content('Список зарегистрированных компаний')
     click_link 'Добавить компанию'
     fill_in 'Название', with: 'ООО Вектор'
-    select 'Москва, Московский проспект, 32а', from: 'address'
+    select 'Москва, Московский проспект, 32а', from: 'company[sections_attributes][0][address_id]'
     fill_in 'Номер секции', with: '12B'
     click_button 'Создать компанию'
   end
