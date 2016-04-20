@@ -5,7 +5,7 @@
 
       <div class="form-group">
         <div class="control-label col-md-3">
-          <%= f.label :name, text='Название' %>
+          <%= f.label :name, 'Название' %>
         </div>
         <div class="col-md-6">
           <%= f.text_field :name, class: 'form-control',
@@ -21,15 +21,18 @@
             <%= f.fields_for :sections do |section_form| %>
               <%= section_form.select(:address_id, options_from_collection_for_select(Address.all, 'id', 'full_address'), {},
                 {class: 'form-control'}) %>
+                <%= section_form.text_field :location, class: 'form-control', autofocus: true %>
             <% end %>
         </div>
       </div>
-
+      
+     
+      
       <div class="form-group">
-        <div class="control-label col-md-3">
-
+          <div class='col-md-offset-4 col-md-6'>
+            <%= f.submit @company.new_record? ? 'Создать компанию' : 'Обновить данные', class: 'btn btn-primary btn-md' %>
+          </div>
         </div>
-      </div>
 
     <% end %>
   </div>
