@@ -15,11 +15,13 @@ feature 'Управление компаниями' do
     click_link 'Управление компаниями'
     expect(page).to have_content('Список зарегистрированных компаний')
     click_link 'Добавить компанию'
-    fill_in 'Название', with: 'ООО Вектор'
-    select 'Москва, Московский проспект, 32а', from: 'company[sections_attributes][0][address_id]'
-    fill_in 'Номер секции', with: '12B'
-    click_button 'Создать компанию'
-    expect(page).to have_content("Компания ООО Вектор успешно создана")
+    expect {
+      fill_in 'Название', with: 'ООО Вектор'
+      select 'Москва, Московский проспект, 32а', from: 'company[sections_attributes][0][address_id]'
+      fill_in 'Номер секции', with: '12B'
+      click_button 'Создать компанию'
+    }.to change(Company, :count).by(1)
+    expect(page).to have_content('Компания ООО Вектор успешно создана')
   end
   
   scenario 'редактирование сведений компании' do
@@ -34,6 +36,11 @@ feature 'Управление компаниями' do
     expect(section.company_id).to eq(@company.id)
     expect(section.address_id).to eq(address.id)
     click_link 'Редактировать'
+    fill_in 'Название', with: 'ООО Супертел'
+    fill_in 'Номер секции', with: '553'
+    click_button 'Обновить данные'
+    expect(page).to have_content 'Сведения о компании ООО Супертел успешно обновлены'
+    expect(page).to have_content 'ООО Супертел'
   end
   
   
