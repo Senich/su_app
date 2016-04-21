@@ -14,7 +14,7 @@ class CompaniesController < ApplicationController
     @company = Company.new(company_params)
     authorize @company
     if @company.save
-      flash[:success] = 'Компания успешно добавлена'
+      flash[:success] = "Компания #{@company.name} успешно создана"
       redirect_to companies_path
     else
       flash[:danger] = "Не удалось создать компанию"
