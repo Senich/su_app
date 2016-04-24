@@ -4,6 +4,8 @@ feature 'Управление пользователями' do
 
   before :each do
     @admin = create(:user, :admin)
+    @company = create(:company_with_address, name: 'Мебельный магазин')
+    create(:company_with_address)
     login_as(@admin)
   end
 
@@ -23,9 +25,12 @@ feature 'Управление пользователями' do
       fill_in 'Подтверждение пароля', with: 'secret123'
       fill_in 'Имя', with: 'John'
       fill_in 'Фамилия', with: 'Doe'
+      select 'Мебельный магазин', from: 'user[company_id]'
       click_button 'Добавить продавца'
     expect(page).to have_content('Пользователь John Doe успешно создан')
     }.to change(User, :count).by(1)
+    user = User.last
+    expect(user.company_id).to eq(@company.id)
   end
 
   scenario 'админ редактирует продавца' do

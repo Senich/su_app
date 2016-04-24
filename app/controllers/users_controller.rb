@@ -45,10 +45,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     authorize @user
     if @user.destroy
-      flash[:success] = "Продавец успешно удалён"
+      flash[:success] = 'Продавец успешно удалён'
       redirect_to users_path
     else
-      flash[:danger] = "Не удалось удалить продавца"
+      flash[:danger] = 'Не удалось удалить продавца'
     end
   end
 
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
   private
 
   def users_params
-    params.require(:user).permit(:first_name, :last_name, :password, :password_confirmation, :email)
+    params.require(:user).permit(:first_name, :last_name, :password, :password_confirmation, :email, :company_id)
   end
 
 end

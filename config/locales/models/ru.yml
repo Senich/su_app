@@ -14,6 +14,12 @@ ru:
         price: "Стоимость"
         color: "Цвет"
         category: "Категория"
+      company:
+        name: "Название компании"
+      address:
+        street: "Поле улица"
+        building: "Поле дом"
+        name: "Поле название магазина или ТЦ"
     models:
       user: "Пользователь"
       product: "Товарная позиция"

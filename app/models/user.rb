@@ -6,9 +6,10 @@ class User < ActiveRecord::Base
 
   has_many :products
   belongs_to :company
+  accepts_nested_attributes_for :company
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  validates :first_name, :last_name, presence: true
+  validates :company_id, presence: true, if: :seller?
 
   def full_name
     "#{first_name} #{last_name}"

@@ -22,6 +22,8 @@ feature 'Управление компаниями' do
       click_button 'Создать компанию'
     }.to change(Company, :count).by(1)
     expect(page).to have_content('Компания ООО Вектор успешно создана')
+    company = Company.last
+    expect(page.current_path).to eq(company_path(company))
   end
   
   scenario 'редактирование сведений компании' do
@@ -42,8 +44,22 @@ feature 'Управление компаниями' do
     expect(page).to have_content 'Сведения о компании ООО Супертел успешно обновлены'
     expect(page).to have_content 'ООО Супертел'
   end
-  
-  
+
+  scenario 'удаление компании' do
+    @company = create(:company_with_address)
+    section = Section.last
+    expect(section).not_to eq(nil)
+    expect(section.company_id).to eq(@company.id)
+    visit companies_path
+    expect {
+      link = "//a[contains(@href, '/companies/#{@company.id}') and .//text()='Удалить']"
+      find(:xpath, link).click
+    }.to change(Company, :count).by(-1)
+    section = Section.last
+    expect(section).to eq(nil)
+    expect(page).to have_content "Компания #{@company.name} была успешно удалена"
+  end
+
 
 
 

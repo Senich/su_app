@@ -1,0 +1,33 @@
+<div class="col-xs-12 col-md-10 col-md-offset-2">
+  <div>
+    <h2 class="show-header">
+      Информация о компании <%= "#{@company.name}" %>
+    </h2>
+  </div>
+
+  <div class="col-xs-12 col-md-10 well member">
+    <div class="col-xs-4">
+      <strong>Название компании</strong>
+    </div>
+    <div class="col-xs-8 text-right">
+      <%= @company.name %>
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-md-10 well member">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong><%= @company.addresses.size > 1 ? 'Адреса' : 'Адрес'  %></strong>
+      </div>
+      <ul class="list-group">
+        <% @company.addresses.each do |address| %>
+          <li class="list-group-item">
+            <%= address.full_address %>
+            <%= address.name %>
+            Секция: <%= get_company_address_section(@company, address) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
