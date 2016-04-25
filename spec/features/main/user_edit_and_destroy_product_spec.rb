@@ -43,7 +43,7 @@ RSpec.feature 'Пользователь(seller)' do
     @pete = FactoryGirl.create(:user, :seller)
     login_as(@pete)
     visit "/users/#{@john.id}/products/#{@john_product.id}/edit"
-    expect(page).to have_content("Вы не авторизованы на выполнение этого действия!")
+    expect(page).to have_content('Вы не авторизованы на выполнение этого действия!')
   end
   
   scenario 'администратор может редактировать чужие товары' do

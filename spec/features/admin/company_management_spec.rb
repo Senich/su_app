@@ -60,7 +60,4 @@ feature 'Управление компаниями' do
     expect(page).to have_content "Компания #{@company.name} была успешно удалена"
   end
 
-
-
-
 end
