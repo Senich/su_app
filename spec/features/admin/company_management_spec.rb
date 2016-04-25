@@ -60,4 +60,14 @@ feature 'Управление компаниями' do
     expect(page).to have_content "Компания #{@company.name} была успешно удалена"
   end
 
+  scenario 'страница компании должна иметь следующие элементы' do
+    company = create(:company_with_address, name: 'JSC Acme')
+    seller = create(:user, :seller, company: company)
+    expect(seller.company_id).to eq(company.id)
+    section = company.get_section_at_address(Address.last)
+
+
+
+  end
+
 end

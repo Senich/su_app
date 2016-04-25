@@ -24,7 +24,7 @@
           <li class="list-group-item">
             <%= address.full_address %>
             <%= address.name %>
-            Секция: <%= get_company_address_section(@company, address) %>
+            Секция: <%= @company.get_section_at_address(address) %>
           </li>
         <% end %>
       </ul>
