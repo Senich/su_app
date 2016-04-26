@@ -10,6 +10,7 @@ FactoryGirl.define do
 
     trait :admin do
       role 'admin'
+      first_name 'Simon'
     end
 
     trait :seller do

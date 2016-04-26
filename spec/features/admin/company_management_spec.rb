@@ -61,13 +61,32 @@ feature 'Управление компаниями' do
   end
 
   scenario 'страница компании должна иметь следующие элементы' do
+    #создаём компанию и берём созданный с ней адрес
     company = create(:company_with_address, name: 'JSC Acme')
+    address = company.addresses.last
+    #создаём двух продавцов представляющих эту компанию
     seller = create(:user, :seller, company: company)
+    seller2 = create(:user, :seller, company: company)
+    #проверка принадлежности продавцов
     expect(seller.company_id).to eq(company.id)
-    section = company.get_section_at_address(Address.last)
+    expect(seller2.company_id).to eq(company.id)
+    #проверка принадлежности секции по данному адресу
+    section = Section.last
+    expect(section.company_id).to eq(company.id)
+    expect(section.address_id).to eq(address.id)
+    #создаём второй адрес и секцию по этому адресу
+    address2 = create(:address)
+    section2 = Section.new(company_id: company.id, address_id: address2.id)
+    section2.save
+    #проверяем принадлежность
+    expect(section2.company_id).to eq(company.id)
+    expect(section2.address_id).to eq(address2.id)
 
-
-
+    visit company_path(company)
+    expect(page).to have_content(address.full_address)
+    expect(page).to have_content(address2.full_address)
+    expect(page).to have_content(seller.full_name)
+    expect(page).to have_content(seller2.full_name)
   end
 
 end

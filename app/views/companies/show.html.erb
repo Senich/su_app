@@ -31,4 +31,19 @@
       </ul>
     </div>
   </div>
+
+  <div class="col-xs-12 col-md-10 well member">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong>Представители</strong>
+      </div>
+      <ul class="list-group">
+        <% @company.users.each do |seller| %>
+          <li class="list-group-item">
+            <%= seller.full_name %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
