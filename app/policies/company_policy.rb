@@ -26,6 +26,6 @@ class CompanyPolicy < ApplicationPolicy
   end
 
   def show?
-    user.admin?
+    true
   end
 end
