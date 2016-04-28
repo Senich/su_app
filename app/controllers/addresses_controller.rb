@@ -19,6 +19,7 @@ class AddressesController < ApplicationController
       flash[:success] = "Адрес #{@address.name} успешно добавлен"
       redirect_to address_path(@address)
     else
+      flash.now[:danger] = 'Не удалось создать новый адрес'
       render :new
     end
   end
@@ -34,7 +35,7 @@ class AddressesController < ApplicationController
       flash[:success] = "Адрес #{@address.name} успешно удалён"
       redirect_to addresses_path
     else
-      flash[:danger] = 'Не удалось удалить адрес'
+      flash.now[:danger] = 'Не удалось удалить адрес'
     end
   end
 
@@ -43,7 +44,7 @@ class AddressesController < ApplicationController
       flash[:success] = 'Данные успешно обновлены'
       redirect_to address_path(@address)
     else
-      flash[:danger] = 'Не удалось обновить информацию об адресе'
+      flash.now[:danger] = 'Не удалось обновить информацию об адресе'
       render :edit
     end
   end

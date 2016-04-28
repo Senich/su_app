@@ -17,15 +17,16 @@ class UsersController < ApplicationController
       flash[:success] = "Пользователь #{@user.full_name} успешно создан"
       redirect_to users_path
     else
+      flash.now[:danger] = 'Не удалось создать пользователя'
       render :new
     end
   end
-  
+
   def edit
     @user = User.find(params[:id])
     authorize @user
   end
-  
+
   def update
     @user = User.find(params[:id])
     if params[:user][:password].blank?
@@ -37,10 +38,11 @@ class UsersController < ApplicationController
       flash[:success] = 'Сведения успешно обновлены'
       redirect_to users_path
     else
+      flash.now[:danger] = 'Не удалось обновить сведения'
       render :edit
     end
   end
-  
+
   def destroy
     @user = User.find(params[:id])
     authorize @user

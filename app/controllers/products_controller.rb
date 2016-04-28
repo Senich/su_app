@@ -33,7 +33,7 @@ before_action :authorize_product, except: [:index, :new, :create]
   		flash[:success] = 'Товарная позиция успешно создана.'
   		redirect_to [current_user, @product]
   	else
-  		flash[:danger] = 'Не удалось создать товарную позицию'
+  		flash.now[:danger] = 'Не удалось создать товарную позицию'
   		render 'new'
   	end
   end
@@ -51,7 +51,7 @@ before_action :authorize_product, except: [:index, :new, :create]
       flash[:success] = 'Сведения о товаре обновлены.'
       redirect_to [current_user, @product]
     else
-      flash[:danger] = 'Не удалось обновить сведения о товаре'
+      flash.now[:danger] = 'Не удалось обновить сведения о товаре'
       render :edit
     end
   end
@@ -61,11 +61,11 @@ before_action :authorize_product, except: [:index, :new, :create]
       flash[:success] = 'Товарная позиция успешно удалена.'
       redirect_to user_products_path(current_user)
     else
-      flash[:danger] = 'Не удалось удалить товарную позицию'
+      flash.now[:danger] = 'Не удалось удалить товарную позицию'
     end
   end
 
-  private 
+  private
 
   def products_params
   	params.require(:product).permit(:name, :width, :height, :depth, :color, :price, :category, :description,
@@ -75,9 +75,9 @@ before_action :authorize_product, except: [:index, :new, :create]
   def set_product
     @product = Product.find(params[:id])
   end
-  
+
   def authorize_product
     authorize @product
   end
-  
+
 end

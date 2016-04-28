@@ -14,7 +14,7 @@ class CompaniesController < ApplicationController
 
   def show
   end
-  
+
   def create
     @company = Company.new(company_params)
     authorize @company
@@ -22,7 +22,7 @@ class CompaniesController < ApplicationController
       flash[:success] = "Компания #{@company.name} успешно создана"
       redirect_to company_path(@company)
     else
-      flash[:danger] = 'Не удалось создать компанию'
+      flash.now[:danger] = 'Не удалось создать компанию'
       render :new
     end
   end
@@ -36,7 +36,7 @@ class CompaniesController < ApplicationController
       flash[:success] = "Сведения о компании #{@company.name} успешно обновлены"
       redirect_to companies_path
     else
-      flash[:danger] = "Не удалось обновить сведения о компании #{@company.name}"
+      flash.now[:danger] = "Не удалось обновить сведения о компании #{@company.name}"
       render :edit
     end
   end
@@ -46,7 +46,7 @@ class CompaniesController < ApplicationController
       flash[:success] = "Компания #{@company.name} была успешно удалена"
       redirect_to companies_path
     else
-      flash[:danger] = "Не удалось удалить компанию #{@company.name}"
+      flash.now[:danger] = "Не удалось удалить компанию #{@company.name}"
     end
   end
 
