@@ -17,11 +17,15 @@ feature 'Управление адресами' do
       fill_in 'Улица', with: 'Московский проспект'
       fill_in 'Дом', with: '2а'
       fill_in 'Название магазина или ТЦ', with: 'Мебель-сити'
+      fill_in 'Телефон', with: '232-55-60'
+      fill_in 'Доб.', with: '227'
       click_button 'Добавить адрес'
     }.to change(Address, :count).by(1)
     expect(page).to have_content('Адрес Мебель-сити успешно добавлен')
     address = Address.last
     expect(page.current_path).to eq(address_path(address))
+    expect(page).to have_content('232-55-60')
+    expect(page).to have_content('Доб. 227')
   end
 
   scenario 'админ редактирует адресс созданного ТЦ или магазина' do

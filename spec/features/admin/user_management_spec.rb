@@ -31,6 +31,7 @@ feature 'Управление пользователями' do
     }.to change(User, :count).by(1)
     user = User.last
     expect(user.company_id).to eq(@company.id)
+    expect(page).to have_content(user.company.name)
   end
 
   scenario 'админ редактирует продавца' do

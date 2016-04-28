@@ -8,6 +8,7 @@ class AddressesController < ApplicationController
 
   def new
     @address = Address.new
+    @phone = @address.phones.new
     authorize @address
   end
 
@@ -50,7 +51,7 @@ class AddressesController < ApplicationController
   private
 
   def address_params
-    params.require(:address).permit(:name, :street, :building, :city )
+    params.require(:address).permit(:name, :street, :building, :city, phones_attributes[:id, :number, :extension, :details] )
   end
 
   def set_address
