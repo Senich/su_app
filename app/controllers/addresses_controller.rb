@@ -8,7 +8,7 @@ class AddressesController < ApplicationController
 
   def new
     @address = Address.new
-    @phone = @address.phones.new
+    @phone = @address.phones.build
     authorize @address
   end
 
@@ -16,6 +16,7 @@ class AddressesController < ApplicationController
     @address = Address.create(address_params)
     authorize @address
     if @address.save
+      # binding.pry
       flash[:success] = "Адрес #{@address.name} успешно добавлен"
       redirect_to address_path(@address)
     else
@@ -41,6 +42,7 @@ class AddressesController < ApplicationController
 
   def update
     if @address.update_attributes(address_params)
+      # binding.pry
       flash[:success] = 'Данные успешно обновлены'
       redirect_to address_path(@address)
     else
@@ -52,7 +54,7 @@ class AddressesController < ApplicationController
   private
 
   def address_params
-    params.require(:address).permit(:name, :street, :building, :city, phones_attributes[:id, :number, :extension, :details] )
+    params.require(:address).permit(:name, :street, :building, :city, phones_attributes: [:id, :number, :extension, :details] )
   end
 
   def set_address

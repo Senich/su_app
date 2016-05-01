@@ -34,7 +34,7 @@ class CompaniesController < ApplicationController
 
     if @company.update_attributes(company_params)
       flash[:success] = "Сведения о компании #{@company.name} успешно обновлены"
-      redirect_to companies_path
+      redirect_to @company
     else
       flash.now[:danger] = "Не удалось обновить сведения о компании #{@company.name}"
       render :edit
