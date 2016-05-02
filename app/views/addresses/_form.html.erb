@@ -38,15 +38,14 @@
             <%= f.text_field :name, class: 'form-control' %>
           </div>
         </div>
-        
-        <% @address.phones.each.with_index do |phone, index| %>  
+        <% @address.phones.each.with_index do |phone| %>
           <%= f.fields_for :phones, phone do |phone_form| %>
             <div class="form-group">
               <div class="control-label col-md-4">
-                <%= phone_form.label phone, 'Телефон' %>
+                <%= phone_form.label :number, 'Телефон' %>
               </div>
               <div class="col-md-4">
-                  <%= phone_form.text_field :number, class: 'form-control' %>
+                  <%= phone_form.phone_field :number, class: 'form-control' %>
               </div>
             </div>
             

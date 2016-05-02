@@ -17,8 +17,8 @@ feature 'Управление адресами' do
       fill_in 'Улица', with: 'Московский проспект'
       fill_in 'Дом', with: '2а'
       fill_in 'Название магазина или ТЦ', with: 'Мебель-сити'
-      fill_in 'Телефон', with: '232-55-60'
-      fill_in 'Доб.', with: '227'
+      fill_in 'Телефон', with: '2325560'
+      fill_in 'Добавочный', with: '227'
       click_button 'Добавить адрес'
     }.to change(Address, :count).by(1)
     expect(page).to have_content('Адрес Мебель-сити успешно добавлен')

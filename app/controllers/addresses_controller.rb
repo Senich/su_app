@@ -8,7 +8,7 @@ class AddressesController < ApplicationController
 
   def new
     @address = Address.new
-    @phone = @address.phones.build
+    @phone = @address.phones.new
     authorize @address
   end
 

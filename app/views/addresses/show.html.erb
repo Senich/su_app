@@ -12,6 +12,12 @@
       </div>
       <ul class="list-group">
         <li class="list-group-item">
+          <% @address.phones.each do |phone| %>
+            <%= phone.format_number %>
+            <%= "Доб. #{phone.extension}" unless phone.extension.empty? %>
+          <% end %>
+        </li>
+        <li class="list-group-item">
           <%= link_to 'Редактировать', edit_address_path(@address), class: 'btn btn-primary link' %>
           <%= link_to 'Удалить', address_path(@address), method: :delete,
                       data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger link' %>
