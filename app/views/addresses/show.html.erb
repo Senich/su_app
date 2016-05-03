@@ -2,10 +2,11 @@
   <h1><p class="text-center">Информация об адресе</p></h1>
 </div>
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
-    <div class="panel panel-primary">
+  <div class="col-xs-12 col-md-10 col-md-offset-1 well member">
+
+    <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= "#{@address.name}" %></h3>
+        <h3 class="panel-title"><strong><%= "#{@address.name}" %></strong></h3>
       </div>
       <div class="panel-body">
         <%= "#{@address.city}, #{@address.street}, #{@address.building}" %>
@@ -18,14 +19,28 @@
           <% end %>
         </li>
         <li class="list-group-item">
+          <%= link_to 'К списку адресов', addresses_path, class: 'btn btn-primary link' %>
           <%= link_to 'Редактировать', edit_address_path(@address), class: 'btn btn-primary link' %>
           <%= link_to 'Удалить', address_path(@address), method: :delete,
                       data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger link' %>
-          <%= link_to 'К списку адресов', addresses_path, class: 'btn btn-primary link' %>
-          <%= link_to 'Добавить ещё адрес', new_address_path, class: 'btn btn-primary link' %>
         </li>
       </ul>
-
     </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><strong>Компании зарегистрированые по этому адресу</strong></h3>
+      </div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <% @address.companies.each do |company| %>
+            <li class="list-group-item">
+              <%= company.name %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
   </div>
 </div>

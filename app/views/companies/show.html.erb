@@ -5,9 +5,9 @@
     </h2>
   </div>
   
-<div class="col-xs-12 col-md-10 col-md-offset-2">
+<div class="col-xs-12 col-md-10 col-md-offset-1">
 
-  <div class="col-xs-12 col-md-10 well member">
+  <div class="col-xs-12 col-md-12 well member">
     
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -34,6 +34,9 @@
             <%= seller.full_name %>
           </li>
         <% end %>
+          <li class="list-group-item">
+            <%= link_to 'Добавить представителя', new_user_path, class: 'btn btn-default link' %>
+          </li>
       </ul>
     </div>
     
