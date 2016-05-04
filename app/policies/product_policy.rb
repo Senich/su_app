@@ -5,7 +5,7 @@ class ProductPolicy < ApplicationPolicy
       if user.role == 'admin'
         scope.all
       else
-        scope.where(user_id: user.id)
+        scope.where(company_id: user.company_id)
       end
     end
   end
@@ -32,7 +32,7 @@ class ProductPolicy < ApplicationPolicy
   end
   
   def edit?
-    user.role == 'admin' || @record.user == user
+    user.role == 'admin' || @record.company == user.company
   end
   
   

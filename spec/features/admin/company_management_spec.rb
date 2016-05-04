@@ -27,16 +27,19 @@ feature 'Управление компаниями' do
   end
   
   scenario 'редактирование сведений компании' do
+    puts Company.count
     @company = create(:company_with_address)
     visit admin_path
     click_link 'Управление компаниями'
     expect(page).to have_content("#{@company.name}")
+    puts @company.name
     address = Address.last
     expect(address.name).to eq('Мебель-сити')
     section = Section.last
     expect(section).not_to eq(nil)
     expect(section.company_id).to eq(@company.id)
     expect(section.address_id).to eq(address.id)
+    Company.all.each { |c| puts c.name }
     click_link 'Редактировать'
     fill_in 'Название', with: 'ООО Супертел'
     fill_in 'Номер секции', with: '553'

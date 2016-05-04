@@ -11,7 +11,7 @@ RSpec.feature 'Создание продукта' do
   scenario 'Пользователь создаёт продукт' do
     visit '/'
     click_link 'Личный кабинет'
-    expect(page.current_path).to eq(user_products_path(@john))
+    expect(page.current_path).to eq(company_products_path(@john.company_id))
     expect(page).to have_content('Мои товарные позиции')
     click_link 'Добавить товар'
     
@@ -29,7 +29,7 @@ RSpec.feature 'Создание продукта' do
     
     expect(page).to have_content 'Товарная позиция успешно создана.'
     product = Product.last
-    expect(page.current_path).to eq(user_product_path(@john, product))
+    expect(page.current_path).to eq(company_product_path(@john.company, product))
     click_link 'Личный кабинет'
     expect(page).to have_content(product.name)
   end

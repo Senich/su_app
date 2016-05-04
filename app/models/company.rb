@@ -3,6 +3,7 @@ class Company < ActiveRecord::Base
   has_many :sections, inverse_of: :company, dependent: :destroy
   has_many :addresses, through: :sections
   has_many :users, -> { where role: 'seller'}, dependent: :destroy
+  has_many :products
   
   accepts_nested_attributes_for :sections, allow_destroy: true
 

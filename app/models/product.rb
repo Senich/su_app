@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :company
   has_many :product_attachments, dependent: :destroy, inverse_of: :product
   accepts_nested_attributes_for :product_attachments, reject_if: proc { |attributes| attributes['picture'].blank? }
   validates :name, presence: true

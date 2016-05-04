@@ -41,8 +41,8 @@
             </li>
             <% if current_user.admin? %>
               <li><%= link_to 'Панель администратора', admin_path %></li>
-            <% else %>
-              <li><%= link_to 'Личный кабинет', user_products_path(current_user) %></li>
+            <% elsif current_user.seller? %>
+              <li><%= link_to 'Личный кабинет', company_products_path(current_user.company_id) %></li>
             <% end %>
 
             <li><%= link_to 'Выход', destroy_user_session_path, method: :delete %></li>

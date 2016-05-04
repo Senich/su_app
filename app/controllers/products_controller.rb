@@ -21,7 +21,7 @@ before_action :authorize_product, except: [:index, :new, :create]
   end
 
   def create
-  	@product = current_user.products.new(products_params)
+  	@product = current_user.company.products.new(products_params)
   	authorize @product
     # если картинки приложены то создаём соответствующую запись
     if params[:product_attachments] != nil
@@ -31,7 +31,7 @@ before_action :authorize_product, except: [:index, :new, :create]
     end
   	if @product.save
   		flash[:success] = 'Товарная позиция успешно создана.'
-  		redirect_to [current_user, @product]
+  		redirect_to [current_user.company, @product]
   	else
   		flash.now[:danger] = 'Не удалось создать товарную позицию'
   		render 'new'
@@ -49,7 +49,7 @@ before_action :authorize_product, except: [:index, :new, :create]
         end
       end
       flash[:success] = 'Сведения о товаре обновлены.'
-      redirect_to [current_user, @product]
+      redirect_to [current_user.company, @product]
     else
       flash.now[:danger] = 'Не удалось обновить сведения о товаре'
       render :edit
@@ -59,7 +59,7 @@ before_action :authorize_product, except: [:index, :new, :create]
   def destroy
     if @product.destroy
       flash[:success] = 'Товарная позиция успешно удалена.'
-      redirect_to user_products_path(current_user)
+      redirect_to company_products_path(current_user.company_id)
     else
       flash.now[:danger] = 'Не удалось удалить товарную позицию'
     end

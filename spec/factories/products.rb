@@ -8,7 +8,7 @@ FactoryGirl.define do
     depth 200
     category 'Мебель для гостинной'
     description Faker::Lorem.sentence
-    user
+    company
 
     factory :product_with_attachments do
 
