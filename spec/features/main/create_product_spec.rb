@@ -29,7 +29,7 @@ RSpec.feature 'Создание продукта' do
     
     expect(page).to have_content 'Товарная позиция успешно создана.'
     product = Product.last
-    expect(page.current_path).to eq(company_product_path(@john.company, product))
+    expect(page.current_path).to eq(product_path(product))
     click_link 'Личный кабинет'
     expect(page).to have_content(product.name)
   end

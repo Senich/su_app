@@ -58,7 +58,7 @@
     <% if current_user.present? %>
       <% if policy(@product).edit? %>
         <%= link_to 'Назад', company_products_path(current_user.company_id), class: 'btn btn-primary btn-md' %>
-        <td><%= link_to 'Редактировать', [:edit, current_user.company, @product], class: 'btn btn-primary btn-md' %></td>
+        <td><%= link_to 'Редактировать', [:edit, @product], class: 'btn btn-primary btn-md' %></td>
       <% end %>
     <% end %>
   </div>

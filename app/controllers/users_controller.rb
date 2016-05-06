@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     authorize @user
     if @user.save
       flash[:success] = "Пользователь #{@user.full_name} успешно создан"
+      session[:company_id] = nil
       redirect_to users_path
     else
       flash.now[:danger] = 'Не удалось создать пользователя'

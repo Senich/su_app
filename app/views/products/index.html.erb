@@ -21,13 +21,13 @@
 		  <tbody>
 		    <% @products.each do |product| %>
 		      <tr>
-		      	<td><%= link_to product.name, [current_user.company, product] %></td>
+		      	<td><%= link_to product.name, product %></td>
 		      	<td><%= product.category %></td>
 		      	<td><%= product.color %></td>
 		      	<td><%= "#{product.width}x#{product.height}x#{product.depth}" %></td>
 		      	<td><%= number_to_currency product.price %></td>
-		      	<td><%= link_to 'Редактировать', [:edit, current_user.company, product] %></td>
-		      	<td><%= link_to 'Удалить', [current_user.company, product], method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+		      	<td><%= link_to 'Редактировать', [:edit, product] %></td>
+		      	<td><%= link_to 'Удалить', product, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
 		      </tr>
 		    <% end %>    	
 		  </tbody>  

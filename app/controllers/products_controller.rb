@@ -17,6 +17,7 @@ before_action :authorize_product, except: [:index, :new, :create]
   def new
     @product = Product.new
     authorize @product
+    @company = current_user.company
     @product_attachment = @product.product_attachments.build
   end
 
@@ -31,7 +32,7 @@ before_action :authorize_product, except: [:index, :new, :create]
     end
   	if @product.save
   		flash[:success] = 'Товарная позиция успешно создана.'
-  		redirect_to [current_user.company, @product]
+  		redirect_to  @product
   	else
   		flash.now[:danger] = 'Не удалось создать товарную позицию'
   		render 'new'
@@ -39,6 +40,7 @@ before_action :authorize_product, except: [:index, :new, :create]
   end
 
   def edit
+    
   end
 
   def update
@@ -49,7 +51,7 @@ before_action :authorize_product, except: [:index, :new, :create]
         end
       end
       flash[:success] = 'Сведения о товаре обновлены.'
-      redirect_to [current_user.company, @product]
+      redirect_to @product
     else
       flash.now[:danger] = 'Не удалось обновить сведения о товаре'
       render :edit

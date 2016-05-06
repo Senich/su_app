@@ -13,6 +13,7 @@ class CompaniesController < ApplicationController
   end
 
   def show
+    session[:company_id] = @company.id
   end
 
   def create

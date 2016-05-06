@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :users 
 
   resources :companies do
-    resources :products
+    resources :products, shallow: true
   end
 
   resources :addresses

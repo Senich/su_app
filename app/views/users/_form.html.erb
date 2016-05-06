@@ -27,7 +27,8 @@
           <%= f.label :company, 'Компания' %>
         </div>
         <div class="col-md-6">
-          <%= f.select(:company_id, options_from_collection_for_select(Company.all, 'id', 'name', @user.company_id), {},
+          <% company = @user.new_record? && !session[:company_id].nil? ? session[:company_id] : @user.company_id %> 
+          <%= f.select(:company_id, options_from_collection_for_select(Company.all, 'id', 'name', company), {},
                 {class: 'form-control'}) %>
         </div>
       </div>

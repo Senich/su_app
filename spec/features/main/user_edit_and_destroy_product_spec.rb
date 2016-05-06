@@ -15,7 +15,7 @@ RSpec.feature 'Пользователь(seller)' do
     expect(@john.company.products.count).to eq(1)
     visit '/'
     click_link 'Личный кабинет'
-    link = "a[href='/companies/#{@company.id}/products/#{@john_product.id}/edit']"
+    link = "a[href='/products/#{@john_product.id}/edit']"
     find(link).click
     fill_in 'Стоимость', with: 999
     fill_in 'Наименование', with: 'Super chair'
@@ -33,7 +33,7 @@ RSpec.feature 'Пользователь(seller)' do
     click_link 'Личный кабинет'
     
     expect {
-      link = "//a[contains(@href, '/companies/#{@company.id}/products/#{@john_product.id}') and .//text()='Удалить'] "
+      link = "//a[contains(@href, '/products/#{@john_product.id}') and .//text()='Удалить'] "
       find(:xpath, link).click
     }.to change(Product, :count).by(-1)
     
@@ -43,15 +43,14 @@ RSpec.feature 'Пользователь(seller)' do
   scenario 'другой селлер не может удалять или редактировать товары первого' do
     @pete = FactoryGirl.create(:user, :seller)
     login_as(@pete)
-    visit "/companies/#{@company.id}/products/#{@john_product.id}/edit"
+    visit "/products/#{@john_product.id}/edit"
     expect(page).to have_content('Вы не авторизованы на выполнение этого действия!')
   end
   
   scenario 'администратор может редактировать чужие товары' do
     @pete = FactoryGirl.create(:user, :admin)
     login_as(@pete)
-    @pete.company = @company
-    visit "/companies/#{@company.id}/products/#{@john_product.id}/edit"
+    visit "/products/#{@john_product.id}/edit"
     expect(page).to have_content ("Редактирование информации о товаре #{ @john_product.name }")
   end
   
