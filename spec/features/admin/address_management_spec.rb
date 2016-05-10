@@ -54,6 +54,17 @@ feature 'Управление адресами' do
     expect(page).to have_content("Адрес #{@address.name} успешно удалён")
     expect(page.current_path).to eq(addresses_path)
   end
+  
+  scenario 'На странице адреса отображаются все зарегистрированые компании' do
+    address = create(:address)
+    company1 = create(:company)
+    company2 = create(:company)
+    address.companies << company1
+    address.companies << company2
+    visit address_path(address)
+    expect(page).to have_content company1.name
+    expect(page).to have_content company2.name
+  end
 
 
 end

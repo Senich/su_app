@@ -18,7 +18,9 @@
           <li class="list-group-item">
             <%= address.full_address %></br>
             <%= address.name %>
-            Секция: <%= @company.get_section_at_address(address) %>
+            <% section = @company.get_section_at_address(address) %>
+            Секция: <%= section %></br>
+            <%= section.phone.format_number unless section.nil? %>
           </li>
         <% end %>
       </ul>

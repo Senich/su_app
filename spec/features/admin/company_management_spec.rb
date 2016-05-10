@@ -19,20 +19,20 @@ feature 'Управление компаниями' do
       fill_in 'Название', with: 'ООО Вектор'
       select 'Москва, Московский проспект, 32а', from: 'company[sections_attributes][0][address_id]'
       fill_in 'Номер секции', with: '12B'
+      fill_in 'Телефон', with: '2445665'
       click_button 'Создать компанию'
     }.to change(Company, :count).by(1)
     expect(page).to have_content('Компания ООО Вектор успешно создана')
     company = Company.last
     expect(page.current_path).to eq(company_path(company))
+    expect(page).to have_content '244-56-65'
   end
   
   scenario 'редактирование сведений компании' do
-    puts Company.count
     @company = create(:company_with_address)
     visit admin_path
     click_link 'Управление компаниями'
     expect(page).to have_content("#{@company.name}")
-    puts @company.name
     address = Address.last
     expect(address.name).to eq('Мебель-сити')
     section = Section.last

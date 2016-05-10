@@ -6,7 +6,7 @@ class Phone < ActiveRecord::Base
 
 
   def format_number
-    #вид 233-98-41
+    #вид 555-55-55
     if number.length == 7
       "#{number.to_s[0..2]}-#{number.to_s[3..4]}-#{number.to_s[5..6]}"
     elsif number.length == 10
