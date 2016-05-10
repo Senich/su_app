@@ -36,6 +36,8 @@ feature 'Управление компаниями' do
     address = Address.last
     expect(address.name).to eq('Мебель-сити')
     section = Section.last
+    phone = create(:phone)
+    section.phone = phone
     expect(section).not_to eq(nil)
     expect(section.company_id).to eq(@company.id)
     expect(section.address_id).to eq(address.id)
@@ -43,8 +45,10 @@ feature 'Управление компаниями' do
     click_link 'Редактировать'
     fill_in 'Название', with: 'ООО Супертел'
     fill_in 'Номер секции', with: '553'
+    fill_in 'Телефон', with: '5552299'
     click_button 'Обновить данные'
     expect(page).to have_content 'Сведения о компании ООО Супертел успешно обновлены'
+    expect(page).to have_content '555-22-99'
     expect(page).to have_content 'ООО Супертел'
   end
 

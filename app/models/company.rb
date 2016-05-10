@@ -9,8 +9,16 @@ class Company < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
 
-  def get_section_at_address(address)
+  def get_section_location_at_address(address)
     sections.where(company_id: id, address_id: address.id).first.location
+  end
+
+  def get_section_phone_at_address(address)
+    sections.where(company_id: id, address_id: address.id).first.phone
+  end
+
+  def get_section_at_address(address)
+    sections.where(company_id: id, address_id: address.id).first
   end
 
 end

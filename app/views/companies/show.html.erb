@@ -19,8 +19,8 @@
             <%= address.full_address %></br>
             <%= address.name %>
             <% section = @company.get_section_at_address(address) %>
-            Секция: <%= section %></br>
-            <%= section.phone.format_number unless section.nil? %>
+            Секция: <%= section.location %></br>
+            Телефон: <%= section.phone.format_number unless section.phone.nil? %>
           </li>
         <% end %>
       </ul>

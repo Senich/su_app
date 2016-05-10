@@ -10,6 +10,10 @@ FactoryGirl.define do
       number Faker::Number.number(11)
     end
 
+    factory :phone_section do
+      section
+    end
+
   end
 
 end
