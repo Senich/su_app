@@ -7,10 +7,6 @@ ru:
           attributes:
             location:
               taken: "занята другой компанией"
-        company:
-          attributes:
-            name:
-              blank: "БЛАБЛАБЛА"
       messages:
         record_invalid: 'Возникли ошибки: %{errors}'
         restrict_dependent_destroy:
