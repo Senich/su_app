@@ -1,0 +1,18 @@
+<div>
+    <h2 class="show-header text-center">
+      Информация о пользователе <%= @user.full_name %>
+    </h2>
+  </div>
+  
+<div class="col-xs-12 col-md-10 col-md-offset-1">
+
+  <div class="col-xs-12 col-md-12 well member">
+    <%= @user.company.name unless @user.company.nil? %>
+  </div>
+  
+  <div class="col-xs-12 col-md-12 well member">
+    <%= link_to 'К списку пользователей', users_path, class: 'btn btn-primary link' %>
+    <%= link_to 'Редактировать сведения', edit_user_path(@user), class: 'btn btn-primary link' %>
+    <%= link_to 'Удалить пользвателя', user_path(@user), method: :delete, data: {confirm: 'Вы уверены?'}, class: 'btn btn-danger link' %>
+  </div>
+</div>

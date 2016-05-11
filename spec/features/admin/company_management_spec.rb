@@ -41,7 +41,6 @@ feature 'Управление компаниями' do
     expect(section).not_to eq(nil)
     expect(section.company_id).to eq(@company.id)
     expect(section.address_id).to eq(address.id)
-    Company.all.each { |c| puts c.name }
     click_link 'Редактировать'
     fill_in 'Название', with: 'ООО Супертел'
     fill_in 'Номер секции', with: '553'

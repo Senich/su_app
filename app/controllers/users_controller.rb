@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  
+  before_action :set_user, only: [:edit, :update, :destroy, :show]
+  
 
   def index
     @users = policy_scope(User)
@@ -6,6 +9,10 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new(role: 'seller')
+    authorize @user
+  end
+  
+  def show
     authorize @user
   end
 
@@ -24,12 +31,10 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
     authorize @user
   end
 
   def update
-    @user = User.find(params[:id])
     if params[:user][:password].blank?
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)
@@ -45,7 +50,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     authorize @user
     if @user.destroy
       flash[:success] = 'Продавец успешно удалён'
@@ -60,6 +64,10 @@ class UsersController < ApplicationController
 
   def users_params
     params.require(:user).permit(:first_name, :last_name, :password, :password_confirmation, :email, :company_id)
+  end
+  
+  def set_user
+    @user = User.find(params[:id])
   end
 
 end

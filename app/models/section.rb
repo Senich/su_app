@@ -2,7 +2,8 @@ class Section < ActiveRecord::Base
   belongs_to :address
   belongs_to :company
   
-  has_one :phone, as: :phoneable
+  has_one :phone, as: :phoneable, dependent: :destroy
+  
   accepts_nested_attributes_for :phone
 
   validates :location, uniqueness: true, allow_blank: true

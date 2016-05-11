@@ -60,6 +60,13 @@ feature 'Управление пользователями' do
     }.to change(User, :count).by(-1)
     expect(page).to have_content('Продавец успешно удалён')
   end
+  
+  scenario 'админ просматривает сведения о продавце' do
+    @pete = create(:user, :seller, company: @company)
+    visit user_path(@pete)
+    expect(page).to have_content @pete.full_name
+    expect(page).to have_content @pete.company.name
+  end
 
 
 end
