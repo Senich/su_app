@@ -33,7 +33,7 @@
       <ul class="list-group">
         <% @company.users.each do |seller| %>
           <li class="list-group-item">
-            <%= seller.full_name %>
+            <%= link_to seller.full_name, seller %>
           </li>
         <% end %>
           <li class="list-group-item">
@@ -41,7 +41,9 @@
           </li>
       </ul>
     </div>
-    
+      <%= link_to 'К списку компаний', companies_path, class: 'btn btn-primary link' %>
+      <%= link_to 'Редактировать данные', edit_company_path(@company), class: 'btn btn-primary link' %>
+      <%= link_to 'Удалить компанию', company_path(@company), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger link' %>
   </div>
   
 
