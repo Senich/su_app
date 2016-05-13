@@ -94,5 +94,14 @@ feature 'Управление компаниями' do
     expect(page).to have_content(seller.full_name)
     expect(page).to have_content(seller2.full_name)
   end
+  
+  scenario 'селлер добавляет к существующей компании новый адрес' do
+    company = create(:company_with_address, name: 'JSC Acme')
+    visit company_path(company)
+    within('li.list-group-item#add_address') do
+      expect(page).to have_link('Добавить адрес')
+    end
+  end
+  
 
 end

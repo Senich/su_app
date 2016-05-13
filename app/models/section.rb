@@ -4,7 +4,7 @@ class Section < ActiveRecord::Base
   
   has_one :phone, as: :phoneable, dependent: :destroy
   
-  accepts_nested_attributes_for :phone
+  accepts_nested_attributes_for :phone, allow_destroy: true
 
   validates :location, uniqueness: true, allow_blank: true
 end

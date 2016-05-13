@@ -56,7 +56,7 @@ class CompaniesController < ApplicationController
   private
 
   def company_params
-    params.require(:company).permit(:name, sections_attributes: [:id, :address_id, :location, :_destroy, phone_attributes: [:id, :number, :extension, :details]] )
+    params.require(:company).permit(:name, sections_attributes: [:id, :address_id, :location, :_destroy, phone_attributes: [:id, :number, :extension, :details, :_destroy]] )
   end
 
   def set_company
