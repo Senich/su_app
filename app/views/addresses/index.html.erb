@@ -19,8 +19,8 @@
         <tr>
           <td><%= link_to address.name, address_path(address) %></td>
           <td><%= "#{address.city} #{address.street}, #{address.building}" %></td>
-          <td><%= link_to 'Редактировать', edit_address_path(address) %></td>
-          <td><%= link_to 'Удалить', address_path(address), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+          <td><%= link_to '<span class="glyphicon glyphicon-wrench">'.html_safe, edit_address_path(address) %></td>
+          <td><%= link_to '<span class="glyphicon glyphicon-remove">'.html_safe, address_path(address), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
         </tr>
       <% end %>
       </tbody>

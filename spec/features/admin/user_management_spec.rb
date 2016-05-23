@@ -56,8 +56,8 @@ feature 'Управление пользователями' do
     page.find(:xpath, link).click
     click_link 'Управление пользователями'
     expect {
-      link = "//a[contains(@href,'/users/#{@johnny.id}') and .//text()='Удалить']"
-      find(:xpath, link).click 
+      page.click_link('', href: "/users/#{@johnny.id}")
+      expect(page.current_path).to eq users_path
     }.to change(User, :count).by(-1)
     expect(page).to have_content('Продавец успешно удалён')
   end

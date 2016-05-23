@@ -21,8 +21,8 @@
           <td><%= link_to user.full_name, user_path(user) %></td>
           <td><%= link_to user.company.name, company_path(user.company) %></td>
           <td><%= user.created_at.to_formatted_s(:db)  %></td>
-          <td><%= link_to 'Редактировать', edit_user_path(user) %></td>
-          <td><%= link_to 'Удалить', user_path(user), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+          <td><%= link_to '<span class="glyphicon glyphicon-wrench">'.html_safe, edit_user_path(user) %></td>
+          <td><%= link_to '<span class="glyphicon glyphicon-remove">'.html_safe, user_path(user), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
         </tr>
       <% end %>
       </tbody>
