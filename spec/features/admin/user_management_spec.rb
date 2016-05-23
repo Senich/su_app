@@ -32,6 +32,7 @@ feature 'Управление пользователями' do
     user = User.last
     expect(user.company_id).to eq(@company.id)
     expect(page).to have_content(user.company.name)
+    expect(page).to have_content(user.created_at.to_formatted_s(:db))
   end
 
   scenario 'админ редактирует продавца' do

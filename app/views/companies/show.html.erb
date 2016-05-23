@@ -20,7 +20,11 @@
             <%= address.name %>
             <% section = @company.get_section_at_address(address) %>
             Секция: <%= section.location %></br>
-            Телефон: <%= section.phone.format_number unless section.phone.nil? %>
+            <% if !section.phone.nil? %> 
+              Телефон: <%= section.phone.format_number %>
+              <%= "Доб. #{section.phone.extension}" unless section.phone.extension.empty? %></br>
+              <%= section.phone.details unless section.phone.details.empty? %>
+            <% end %>
           </li>
           <li class="list-group-item" id="add_address">
             <%= link_to 'Добавить адрес', '', class: 'btn btn-default link' %>
