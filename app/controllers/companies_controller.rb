@@ -8,8 +8,6 @@ class CompaniesController < ApplicationController
 
   def new
     @company = Company.new
-    @section = @company.sections.build
-    @phone = @section.build_phone
     authorize @company
   end
 

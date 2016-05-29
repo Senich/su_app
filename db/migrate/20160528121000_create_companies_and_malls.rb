@@ -1,27 +1,25 @@
-class CreateCompanies < ActiveRecord::Migration
+class CreateCompaniesAndMalls < ActiveRecord::Migration
   def change
     create_table :companies do |t|
       t.string :name
+      t.string :details
 
       t.timestamps null: false
     end
 
-    create_table :addresses do |t|
+    create_table :malls do |t|
       t.string :name
-      t.string :city
+      t.string :details
       t.string :street
+      t.string :city
       t.string :building
 
       t.timestamps null: false
     end
 
-    create_table :sections do |t|
+    create_table :companies_malls, id: false do |t|
       t.belongs_to :company, index: true
-      t.belongs_to :address, index: true
-
-      t.text :location
-
-      t.timestamps null: false
+      t.belongs_to :mall, index: true
     end
   end
 end

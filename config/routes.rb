@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :products, shallow: true
   end
 
-  resources :addresses
+  resources :malls
 
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'

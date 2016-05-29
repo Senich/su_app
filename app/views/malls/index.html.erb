@@ -1,0 +1,31 @@
+<div class="row">
+  <h1><p class="text-center">Список зарегистрированых торговых центров и магазинов'</p></h1>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <%= link_to 'Добавить ТЦ', new_mall_path, class: 'btn btn-primary link' %>
+  </div>
+</div>
+<div class="col-md-12 col-xs-12">
+  <% unless @malls.empty? %>
+    <table class="table table-striped table-hover">
+      <thead>
+      <tr>
+        <th>Название ТЦ или магазина</th>
+        <th>Адрес</th>
+        <th colspan="2"></th>
+        <tbody>
+        <% @malls.each do |mall| %>
+        <tr>
+          <td><%= link_to mall.name, mall_path(mall) %></td>
+          <td><%= "#{mall.full_name}" %></td>
+          <td><%= link_to '<span class="glyphicon glyphicon-wrench">'.html_safe, edit_mall_path(mall) %></td>
+          <td><%= link_to '<span class="glyphicon glyphicon-remove">'.html_safe, mall_path(mall), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+        </tr>
+      <% end %>
+      </tbody>
+      </tr>
+      </thead>
+      </table>
+  <% end %>
+</div>
