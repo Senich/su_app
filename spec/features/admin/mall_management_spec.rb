@@ -32,4 +32,10 @@ feature 'Управление мебельными центрами' do
     expect(page).to have_content mall.full_address
   end
 
+  scenario 'редактирование сведений о ТЦ' do
+    @mall = create(:mall)
+    expect(@mall.contact).not_to be_nil
+    expect(@mall.contact.phones.first).not_to be_nil
+  end
+
 end
