@@ -39,8 +39,8 @@
             <%= f.text_field :building, class: 'form-control' %>
           </div>
         </div>
-
-        <%= f.fields_for @mall.contact do |contact_form| %>
+        <% contact = @mall.contact %>
+        <%= f.fields_for :contact, contact do |contact_form| %>
 
           <div class="form-group">
             <div class="control-label col-md-4">
@@ -51,7 +51,7 @@
             </div>
           </div>
 
-          <% @mall.contact.phones.each_with_index do |phone| %>
+          <% contact.phones.each_with_index do |phone| %>
             <%= contact_form.fields_for :phones, phone do |phone_form| %>
               <div class="form-group">
                 <div class="control-label col-md-4">

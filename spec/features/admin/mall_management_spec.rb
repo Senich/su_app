@@ -17,6 +17,7 @@ feature 'Управление мебельными центрами' do
       select 'Москва', from: 'mall[city]'
       fill_in 'Улица', with: 'Проспект Просвещения'
       fill_in 'Дом', with: '23А'
+      fill_in 'Email', with: 'mebel@city.com'
       fill_in 'Телефон', with: 2339841
       fill_in 'Доб.', with: 224
       fill_in 'Примечания', with: 'Телефон секретаря'
@@ -27,6 +28,7 @@ feature 'Управление мебельными центрами' do
     expect(page).to have_content "ТЦ #{mall.name} успешно создан"
     expect(page.current_path).to eq(mall_path(mall))
     expect(page).to have_content '233-98-41'
+    expect(page).to have_content 'mebel@city.com'
     expect(page).to have_content mall.full_address
   end
 

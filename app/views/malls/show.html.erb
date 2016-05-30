@@ -1,0 +1,49 @@
+<div class="row">
+  <h1><p class="text-center">Информация о торговом центре <%= @mall.name %></p></h1>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-md-10 col-md-offset-1 well member">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><strong><%= "#{@mall.name}" %></strong></h3>
+      </div>
+      <div class="panel-body">
+        <%= "#{@mall.full_address}" %>
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <% @mall.contact.phones.each do |phone| %>
+            <%= phone.format_number %>
+            <%= "Доб. #{phone.extension}" unless phone.extension.empty? %>
+          <% end %>
+        </li>
+        <li class="list-group-item">
+          Электронная почта: <%= @mall.contact.email %>
+        </li>
+        <li class="list-group-item">
+          <%= link_to 'К списку ТЦ', malls_path, class: 'btn btn-primary link' %>
+          <%= link_to 'Редактировать', edit_mall_path(@mall), class: 'btn btn-primary link' %>
+          <%= link_to 'Удалить', mall_path(@mall), method: :delete,
+                      data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger link' %>
+        </li>
+      </ul>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><strong>Компании зарегистрированые по этому адресу</strong></h3>
+      </div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <% @mall.companies.each do |company| %>
+            <li class="list-group-item">
+              <%= company.name %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>

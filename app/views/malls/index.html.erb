@@ -18,7 +18,7 @@
         <% @malls.each do |mall| %>
         <tr>
           <td><%= link_to mall.name, mall_path(mall) %></td>
-          <td><%= "#{mall.full_name}" %></td>
+          <td><%= "#{mall.full_address}" %></td>
           <td><%= link_to '<span class="glyphicon glyphicon-wrench">'.html_safe, edit_mall_path(mall) %></td>
           <td><%= link_to '<span class="glyphicon glyphicon-remove">'.html_safe, mall_path(mall), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
         </tr>

@@ -53,8 +53,8 @@ ActiveRecord::Schema.define(version: 20160528134901) do
   end
 
   create_table "phones", force: :cascade do |t|
-    t.integer  "number"
-    t.integer  "extension"
+    t.string   "number"
+    t.string   "extension"
     t.string   "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
