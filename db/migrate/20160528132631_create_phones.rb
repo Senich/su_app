@@ -3,7 +3,7 @@ class CreatePhones < ActiveRecord::Migration
     create_table :phones do |t|
       t.string :number
       t.string :extension
-      t.string :notes
+      t.text :notes
 
       t.timestamps null: false
     end
