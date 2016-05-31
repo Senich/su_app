@@ -34,8 +34,29 @@ feature 'Управление мебельными центрами' do
 
   scenario 'редактирование сведений о ТЦ' do
     @mall = create(:mall)
+    #проверяем нормально ли создались связанные объекты
     expect(@mall.contact).not_to be_nil
     expect(@mall.contact.phones.first).not_to be_nil
+    visit malls_path
+    link = "a[href='/malls/#{@mall.id}/edit']"
+    find(link).click
+    fill_in 'Название', with: 'MEGA'
+    select 'Москва', from: 'mall[city]'
+    fill_in 'Улица', with: 'Невский проспект'
+    fill_in 'Дом', with: '22'
+    fill_in 'Email', with: 'mebel@mega.com'
+    fill_in 'Телефон', with: '9213522103'
+    fill_in 'Доб.', with: '110'
+    fill_in 'Примечания', with: 'Телефон рецепции'
+    fill_in 'Описание', with: 'MEGAMALL'
+    click_button 'Обновить сведения'
+    expect(page).to have_content 'Сведения о ТЦ MEGA успешно обновлены'
+    expect(page).to have_content 'MEGA'
+    expect(page).to have_content 'Невский проспект'
+    expect(page).to have_content '22'
+    expect(page).to have_content 'mebel@mega.com'
+    expect(page).to have_content '(921) 352-21-03'
+    expect(page).to have_content 'MEGAMALL'
   end
 
 end

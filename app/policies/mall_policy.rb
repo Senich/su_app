@@ -14,6 +14,14 @@ class MallPolicy < ApplicationPolicy
   def create?
     user.admin?
   end
+  
+  def edit?
+    user.admin?
+  end
+  
+  def update?
+    new?
+  end
 
 
 end

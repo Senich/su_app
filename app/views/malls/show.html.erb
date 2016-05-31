@@ -22,6 +22,9 @@
           Электронная почта: <%= @mall.contact.email %>
         </li>
         <li class="list-group-item">
+          <%= @mall.details %>
+        </li>
+        <li class="list-group-item">
           <%= link_to 'К списку ТЦ', malls_path, class: 'btn btn-primary link' %>
           <%= link_to 'Редактировать', edit_mall_path(@mall), class: 'btn btn-primary link' %>
           <%= link_to 'Удалить', mall_path(@mall), method: :delete,

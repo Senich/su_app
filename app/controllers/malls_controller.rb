@@ -16,16 +16,28 @@ class MallsController < ApplicationController
   def show
   end
   
+  def edit
+  end
+  
   def create
     @mall = Mall.create(mall_params)
     authorize @mall
-    # binding.pry
     if @mall.save
       flash[:success] = "ТЦ #{@mall.name} успешно создан"
       redirect_to @mall
     else
       flash.now[:danger] = "Не удалось создать новый ТЦ"
       render :new
+    end
+  end
+  
+  def update
+    if @mall.update_attributes(mall_params)
+      flash[:success] = "Сведения о ТЦ #{@mall.name} успешно обновлены"
+      redirect_to @mall
+    else
+      flash.now[:danger] = "Не удалось обновить сведения о ТЦ #{@mall.name}"
+      render :edit
     end
   end
   
