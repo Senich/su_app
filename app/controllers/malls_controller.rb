@@ -41,6 +41,15 @@ class MallsController < ApplicationController
     end
   end
   
+  def destroy
+    if @mall.destroy
+      flash[:success] = "#{@mall.name} успешно удалён"
+      redirect_to malls_path
+    else
+      flash[:danger] = "Не удалось удалить #{@mall.name}"
+    end
+  end
+  
   
   private
   

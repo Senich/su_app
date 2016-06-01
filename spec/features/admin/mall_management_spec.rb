@@ -58,5 +58,28 @@ feature 'Управление мебельными центрами' do
     expect(page).to have_content '(921) 352-21-03'
     expect(page).to have_content 'MEGAMALL'
   end
+  
+  scenario 'удаление записи о молле' do
+    @mall = create(:mall)
+    visit malls_path
+    expect {
+      page.click_link('', href: "/malls/#{@mall.id}")
+    }.to change(Mall, :count).by(-1)
+    expect(page.current_path).to eq(malls_path)
+    expect(page).to have_content "#{@mall.name} успешно удалён"
+  end
+  
+  scenario 'На странице моллов отображаются все находящиеся в них компании' do
+    mall = create(:mall_with_companies, companies_count: 2)
+    # company1 = create(:company)
+    # company2 = create(:company)
+    company1 = Company.first
+    company2 = Company.last
+    # mall.companies << company1
+    # mall.companies << company2
+    visit mall_path(mall)
+    expect(page).to have_content company1.name
+    expect(page).to have_content company2.name
+  end
 
 end

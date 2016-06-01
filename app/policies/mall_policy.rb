@@ -22,6 +22,11 @@ class MallPolicy < ApplicationPolicy
   def update?
     new?
   end
+  
+  def destroy?
+    new?
+  end
+  
 
 
 end

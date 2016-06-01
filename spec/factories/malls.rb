@@ -7,5 +7,18 @@ FactoryGirl.define do
     building { Faker::Address.building_number }
     details { Faker::Company.catch_phrase }
     contact
+    
+    factory :mall_with_companies do
+      
+      transient do
+        companies_count 1
+      end
+      
+      after(:create) do |mall, evaluator|
+        create_list(:company, evaluator.companies_count, malls: [mall])
+      end
+      
+    end
+    
   end
 end
