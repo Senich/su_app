@@ -71,12 +71,8 @@ feature 'Управление мебельными центрами' do
   
   scenario 'На странице моллов отображаются все находящиеся в них компании' do
     mall = create(:mall_with_companies, companies_count: 2)
-    # company1 = create(:company)
-    # company2 = create(:company)
     company1 = Company.first
     company2 = Company.last
-    # mall.companies << company1
-    # mall.companies << company2
     visit mall_path(mall)
     expect(page).to have_content company1.name
     expect(page).to have_content company2.name

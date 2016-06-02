@@ -8,6 +8,10 @@ class CompaniesController < ApplicationController
 
   def new
     @company = Company.new
+    @section = @company.sections.build
+    @contact = @section.build_contact
+    @phone = @contact.phones.build
+    # binding.pry
     authorize @company
   end
 
@@ -54,7 +58,8 @@ class CompaniesController < ApplicationController
   private
 
   def company_params
-    params.require(:company).permit(:name, sections_attributes: [:id, :address_id, :location, :_destroy, phone_attributes: [:id, :number, :extension, :details, :_destroy]] )
+    params.require(:company).permit(:name, :details, sections_attributes: [:id, :mall_id, :location, :_destroy, 
+       contact_attributes: [:id, :email, :details, :destroy, phones_attributes: [:id, :number, :extension, :notes, :_destroy]]] )
   end
 
   def set_company

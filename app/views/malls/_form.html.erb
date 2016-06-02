@@ -39,48 +39,9 @@
             <%= f.text_field :building, class: 'form-control' %>
           </div>
         </div>
-        <% contact = @mall.contact %>
-        <%= f.fields_for :contact, contact do |contact_form| %>
-
-          <div class="form-group">
-            <div class="control-label col-md-4">
-              <%= contact_form.label :email, 'Email' %>
-            </div>
-            <div class="col-md-4">
-              <%= contact_form.phone_field :email, class: 'form-control' %>
-            </div>
-          </div>
-
-          <% contact.phones.each_with_index do |phone| %>
-            <%= contact_form.fields_for :phones, phone do |phone_form| %>
-              <div class="form-group">
-                <div class="control-label col-md-4">
-                  <%= phone_form.label :number, 'Телефон' %>
-                </div>
-                <div class="col-md-4">
-                  <%= phone_form.phone_field :number, class: 'form-control' %>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="control-label col-md-4">
-                  <%= phone_form.label :extension, 'Доб.' %>
-                </div>
-                <div class="col-md-4">
-                  <%= phone_form.text_field :extension, class: 'form-control' %>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="control-label col-md-4">
-                  <%= phone_form.label :notes, 'Примечания' %>
-                </div>
-                <div class="col-md-4">
-                  <%= phone_form.text_area :notes, class: 'form-control' %>
-                </div>
-              </div>
-            <% end  %>
-          <% end %>
+        
+        <%= f.fields_for :contact do |contact_form| %>
+          <%= render 'shared/contact_fields', f: contact_form, obj: @mall %>
         <% end %>
 
         <div class="form-group">
