@@ -7,7 +7,7 @@
   </div>
 </div>
 
-<% obj.contact.phones.each do |phone| %>
+<% contact.phones.each do |phone| %>
   <%= f.fields_for :phones do |phone_form| %>
     <%= render 'shared/phone_fields', f: phone_form %>
   <% end  %>

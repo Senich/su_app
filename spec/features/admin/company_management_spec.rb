@@ -24,7 +24,7 @@ feature 'Управление компаниями' do
     expect(page).to have_content('Компания ООО Вектор успешно создана')
     company = Company.last
     expect(page.current_path).to eq(company_path(company))
-    expect(page).to have_content '244-56-65'
+
   end
   
   scenario 'редактирование сведений компании' do

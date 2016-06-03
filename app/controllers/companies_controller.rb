@@ -21,6 +21,7 @@ class CompaniesController < ApplicationController
 
   def create
     @company = Company.new(company_params)
+    # @company.malls << @company.sections.last.mall
     authorize @company
     # binding.pry
     if @company.save

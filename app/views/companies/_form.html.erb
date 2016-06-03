@@ -4,41 +4,41 @@
       <%= render 'shared/errors', obj: @company , model_name: 'компании' %>
 
       <div class="form-group">
-        <div class="control-label col-md-3">
+        <div class="control-label col-md-4">
           <%= f.label :name, 'Название' %>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
           <%= f.text_field :name, class: 'form-control', autofocus: true %>
         </div>
       </div>
       
       <%= f.fields_for :sections do |section_form| %>
         <div class="form-group">
-          <div class="control-label col-md-3">
+          <div class="control-label col-md-4">
             <%= section_form.label :mall_id, 'ТЦ' %>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <%= section_form.select(:mall_id, options_from_collection_for_select(Mall.all, 'id', 'name'), {},
           {class: 'form-control'}) %>
-          </div> 
+          </div>
         </div>
         
         <div class="form-group">
-          <div class="control-label col-md-3">
+          <div class="control-label col-md-4">
             <%= section_form.label :location, 'Секция' %>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <%= section_form.text_field :location, class: 'form-control', autofocus: true %>
           </div>
         </div>
       
         <%= section_form.fields_for :contact do |contact_form| %>
-          <% render 'shared/contact_fields', f: contact_form, obj: @company %>
+          <% render 'shared/contact_fields', f: contact_form, contact: @contact %>
         <% end %>
       <% end %>
       
       <div class="form-group">
-        <div class='col-md-offset-3 col-md-6'>
+        <div class='col-md-offset-4 col-md-4'>
           <%= f.submit @company.new_record? ? 'Создать компанию' : 'Обновить данные', class: 'btn btn-primary btn-md' %>
         </div>
       </div>

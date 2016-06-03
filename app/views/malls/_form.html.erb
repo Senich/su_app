@@ -41,7 +41,7 @@
         </div>
         
         <%= f.fields_for :contact do |contact_form| %>
-          <%= render 'shared/contact_fields', f: contact_form, obj: @mall %>
+          <%= render 'shared/contact_fields', f: contact_form, contact: @mall.contact %>
         <% end %>
 
         <div class="form-group">

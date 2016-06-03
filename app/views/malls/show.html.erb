@@ -9,12 +9,12 @@
         <h3 class="panel-title"><strong><%= "#{@mall.name}" %></strong></h3>
       </div>
       <div class="panel-body">
-        <%= "#{@mall.full_address}" %>
+        Адрес: <%= "#{@mall.full_address}" %>
       </div>
       <ul class="list-group">
         <li class="list-group-item">
           <% @mall.contact.phones.each do |phone| %>
-            <%= phone.format_number %>
+            Телефон: <%= phone.format_number %>
             <%= "Доб. #{phone.extension}" unless phone.extension.empty? %>
           <% end %>
         </li>
@@ -22,7 +22,7 @@
           Электронная почта: <%= @mall.contact.email %>
         </li>
         <li class="list-group-item">
-          <%= @mall.details %>
+          Описание: <%= @mall.details %>
         </li>
         <li class="list-group-item">
           <%= link_to 'К списку ТЦ', malls_path, class: 'btn btn-primary link' %>

@@ -11,20 +11,14 @@
     
     <div class="panel panel-default">
       <div class="panel-heading">
-        <strong><%= @company.addresses.size > 1 ? 'Адреса' : 'Адрес'  %></strong>
+        <strong>Расположены в следующих местах:</strong>
       </div>
       <ul class="list-group">
-        <% @company.addresses.each do |address| %>
+        <% @company.sections.each do |section| %>
           <li class="list-group-item">
-            <%= address.full_address %></br>
-            <%= address.name %>
-            <% section = @company.get_section_at_address(address) %>
+            <%= section.mall.name %>
             Секция: <%= section.location %></br>
-            <% if !section.phone.nil? %> 
-              Телефон: <%= section.phone.format_number %>
-              <%= "Доб. #{section.phone.extension}" unless section.phone.extension.empty? %></br>
-              <%= section.phone.details unless section.phone.details.empty? %>
-            <% end %>
+            <%= section.mall.full_address %></br>
           </li>
           <li class="list-group-item" id="add_address">
             <%= link_to 'Добавить адрес', '', class: 'btn btn-default link' %>
