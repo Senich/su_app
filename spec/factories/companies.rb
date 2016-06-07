@@ -3,6 +3,8 @@ FactoryGirl.define do
   
   factory :company do
     name { Faker::Company.name }
+    details { Faker::Company.catch_phrase }
+    contact
     
     factory :company_at_few_malls do
       

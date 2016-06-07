@@ -11,6 +11,22 @@
     
     <div class="panel panel-default">
       <div class="panel-heading">
+        <strong>Сведения о компании</strong>
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item"><%= @company.details %></li>
+        <% @company.contact.phones.each_with_index do |phone, index| %>
+          <li class="list-group-item">
+            <%= "Телефон #{index + 1}: #{phone.format_number}" %>
+            <%= "| #{phone.notes}" unless phone.notes.empty? %>
+          </li>    
+        <% end %>
+        <li class="list-group-item"><%= "Электронная почта: #{@company.contact.email}" %></li>
+      </ul>
+    </div>
+    
+    <div class="panel panel-default">
+      <div class="panel-heading">
         <strong>Расположены в следующих местах:</strong>
       </div>
       <ul class="list-group">
@@ -20,10 +36,10 @@
             Секция: <%= section.location %></br>
             <%= section.mall.full_address %></br>
           </li>
-          <li class="list-group-item" id="add_address">
-            <%= link_to 'Добавить адрес', '', class: 'btn btn-default link' %>
-          </li>
         <% end %>
+        <li class="list-group-item" id="add_address">
+            <%= link_to 'Добавить адрес', '', class: 'btn btn-default link' %>
+        </li>
       </ul>
     </div>
     

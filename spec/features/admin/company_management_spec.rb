@@ -16,38 +16,39 @@ feature 'Управление компаниями' do
     click_link 'Добавить компанию'
     expect {
       fill_in 'Название', with: 'ООО Вектор'
-      select @mall.name, from: 'company[sections_attributes][0][mall_id]'
-      fill_in 'Секция', with: '12B'
+      fill_in 'Email', with: 'vector@vector.com'
       fill_in 'Телефон', with: 2445665
+      fill_in 'О компании', with: 'Самая лучшая компания в мире'
       click_button 'Создать компанию'
     }.to change(Company, :count).by(1)
     expect(page).to have_content('Компания ООО Вектор успешно создана')
+    expect(page).to have_content('244-56-65')
+    expect(page).to have_content('vector@vector.com')
+    expect(page).to have_content('Самая лучшая')
     company = Company.last
     expect(page.current_path).to eq(company_path(company))
 
   end
   
   scenario 'редактирование сведений компании' do
-    # @company = create(:company_with_address)
-    # visit admin_path
-    # click_link 'Управление компаниями'
-    # expect(page).to have_content("#{@company.name}")
-    # address = Address.last
-    # expect(address.name).to eq('Мебель-сити')
-    # section = Section.last
-    # phone = create(:phone)
-    # section.phone = phone
-    # expect(section).not_to eq(nil)
-    # expect(section.company_id).to eq(@company.id)
-    # expect(section.address_id).to eq(address.id)
-    # click_link 'Редактировать'
-    # fill_in 'Название', with: 'ООО Супертел'
-    # fill_in 'Номер секции', with: '553'
-    # fill_in 'Телефон', with: '5552299'
-    # click_button 'Обновить данные'
-    # expect(page).to have_content 'Сведения о компании ООО Супертел успешно обновлены'
-    # expect(page).to have_content '555-22-99'
-    # expect(page).to have_content 'ООО Супертел'
+    @company = create(:company)
+    visit admin_path
+    click_link 'Управление компаниями'
+    expect(page).to have_content("#{@company.name}")
+    link = "a[href='/companies/#{@company.id}/edit']"
+    find(link).click
+    fill_in 'Название', with: 'ООО Супертел'
+    fill_in 'О компании', with: 'Telecom company #1'
+    fill_in 'Email', with: 'st@st.com'
+    fill_in 'Телефон', with: '5552299'
+    fill_in 'Примечания', with: 'Контакты центрального офиса'
+    click_button 'Обновить данные'
+    expect(page).to have_content 'Сведения о компании ООО Супертел успешно обновлены'
+    expect(page).to have_content '555-22-99'
+    expect(page).to have_content 'ООО Супертел'
+    expect(page).to have_content 'Контакты центрального офиса'
+    expect(page).to have_content 'Telecom company #1'
+    
   end
 
   scenario 'удаление компании' do

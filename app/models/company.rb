@@ -6,6 +6,6 @@ class Company < ActiveRecord::Base
   has_many :users, -> { where role: 'seller'}, dependent: :destroy
   has_many :products, dependent: :destroy
 
-  accepts_nested_attributes_for :sections, allow_destroy: true
+  accepts_nested_attributes_for :contact, allow_destroy: true
 
 end
