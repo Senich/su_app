@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for([@company, @section], :html => {class: 'form-horizontal', role: 'form' })  do |f| %>
+      <%= render 'shared/errors', obj: @section , model_name: 'секции' %>
+
+      <div class="form-group">
+        <div class="control-label col-md-4">
+          <%= f.label :location, 'Расположение' %>
+        </div>
+        <div class="col-md-4">
+          <%= f.text_field :location, class: 'form-control', autofocus: true %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="control-label col-md-4">
+          <%= f.label :mall, 'ТЦ' %>
+        </div>
+        <div class="col-md-4">
+          <%= f.select(:mall_id, options_from_collection_for_select(Mall.all, 'id', 'name', nil), {},
+                       {class: 'form-control'}) %>
+        </div>
+      </div>
+
+      <%= f.fields_for :contact do |contact_form| %>
+        <% render 'shared/contact_fields', f: contact_form, contact: @contact %>
+      <% end %>
+
+      <div class="form-group">
+        <div class='col-md-offset-4 col-md-4'>
+          <%= f.submit @section.new_record? ? 'Добавить адрес' : 'Обновить данные', class: 'btn btn-primary btn-md' %>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</div>

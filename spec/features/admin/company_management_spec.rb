@@ -91,11 +91,13 @@ feature 'Управление компаниями' do
     end
     click_link 'Добавить адрес'
     expect(page.current_path).to eq(new_company_section_path(company.id))
-    expect(session[:company_id]).to eq(company_id)
     expect {
       fill_in 'Расположение', with: 'Секция 223'
+      fill_in 'Телефон', with: '5555555'
+      fill_in 'Email', with: 'test@test.com'
       click_button 'Добавить адрес'
     }.to change(Section, :count).by(1)
+    expect(page).to have_content "Адрес для #{company.name} успешно добавлен"
     expect(page.current_path).to eq(company_path(company))
     expect(page).to have_content 'Секция 223'
   end

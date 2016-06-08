@@ -19,9 +19,7 @@ class CompaniesController < ApplicationController
 
   def create
     @company = Company.new(company_params)
-    # @company.malls << @company.sections.last.mall
     authorize @company
-    # binding.pry
     if @company.save
       flash[:success] = "Компания #{@company.name} успешно создана"
       redirect_to company_path(@company)
@@ -59,7 +57,7 @@ class CompaniesController < ApplicationController
   private
 
   def company_params
-    params.require(:company).permit(:name, :details, contact_attributes: [:id, :email, :details, :destroy, phones_attributes: [:id, :number, :extension, :notes, :_destroy]] )
+    params.require(:company).permit(:name, :details, contact_attributes: [:id, :email, :details, :_destroy, phones_attributes: [:id, :number, :extension, :notes, :_destroy]] )
   end
 
   def set_company
