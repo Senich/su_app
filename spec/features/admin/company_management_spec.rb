@@ -52,55 +52,52 @@ feature 'Управление компаниями' do
   end
 
   scenario 'удаление компании' do
-    # @company = create(:company_with_address)
-    # section = Section.last
-    # expect(section).not_to eq(nil)
-    # expect(section.company_id).to eq(@company.id)
-    # visit companies_path
-    # expect {
-    #   link = "//a[contains(@href, '/companies/#{@company.id}') and .//text()='Удалить']"
-    #   find(:xpath, link).click
-    # }.to change(Company, :count).by(-1)
-    # section = Section.last
-    # expect(section).to eq(nil)
-    # expect(page).to have_content "Компания #{@company.name} была успешно удалена"
+    @company = create(:company)
+    visit companies_path
+    expect {
+      page.click_link('', href: "/companies/#{@company.id}")
+    }.to change(Company, :count).by(-1)
+    expect(page.current_path).to eq(companies_path)
+    expect(page).to have_content "Компания #{@company.name} была успешно удалена"
   end
 
   scenario 'страница компании должна иметь следующие элементы' do
-    # #создаём компанию и берём созданный с ней адрес
-    # company = create(:company_with_address, name: 'JSC Acme')
-    # address = company.addresses.last
-    # #создаём двух продавцов представляющих эту компанию
-    # seller = create(:user, :seller, company: company)
-    # seller2 = create(:user, :seller, company: company)
-    # #проверка принадлежности продавцов
-    # expect(seller.company_id).to eq(company.id)
-    # expect(seller2.company_id).to eq(company.id)
-    # #проверка принадлежности секции по данному адресу
+    #создаём компанию и берём созданный с ней адрес
+    company = create(:company, name: 'JSC Acme')
+    #создаём двух продавцов представляющих эту компанию
+    seller = create(:user, :seller, company: company)
+    seller2 = create(:user, :seller, company: company)
+    #проверка принадлежности продавцов
+    expect(seller.company_id).to eq(company.id)
+    expect(seller2.company_id).to eq(company.id)
+    #проверка принадлежности секции по данному адресу
     # section = Section.last
     # expect(section.company_id).to eq(company.id)
     # expect(section.address_id).to eq(address.id)
-    # #создаём второй адрес и секцию по этому адресу
-    # address2 = create(:address)
-    # section2 = Section.new(company_id: company.id, address_id: address2.id)
-    # section2.save
-    # #проверяем принадлежность
-    # expect(section2.company_id).to eq(company.id)
-    # expect(section2.address_id).to eq(address2.id)
-    #
-    # visit company_path(company)
-    # expect(page).to have_content(address.full_address)
-    # expect(page).to have_content(address2.full_address)
-    # expect(page).to have_content(seller.full_name)
-    # expect(page).to have_content(seller2.full_name)
+    #создаём второй адрес и секцию по этому адресу
+    
+    #проверяем принадлежность
+    visit company_path(company)
+    
+    expect(page).to have_content(seller.full_name)
+    expect(page).to have_content(seller2.full_name)
   end
   
   scenario 'селлер добавляет к существующей компании новый адрес' do
-    # company = create(:company_with_address, name: 'JSC Acme')
-    # visit company_path(company)
-    # within('li.list-group-item#add_address') do
-    #   expect(page).to have_link('Добавить адрес')
-    # end
+    company = create(:company, name: 'JSC Acme')
+    visit company_path(company)
+    within('li.list-group-item#add_address') do
+      expect(page).to have_link('Добавить адрес')
+    end
+    click_link 'Добавить адрес'
+    expect(page.current_path).to eq(new_company_section_path(company.id))
+    expect(session[:company_id]).to eq(company_id)
+    expect {
+      fill_in 'Расположение', with: 'Секция 223'
+      click_button 'Добавить адрес'
+    }.to change(Section, :count).by(1)
+    expect(page.current_path).to eq(company_path(company))
+    expect(page).to have_content 'Секция 223'
   end
   
 

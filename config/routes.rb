@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :companies do
     resources :products, shallow: true
+    resources :sections, shallow: true
   end
 
   resources :malls
