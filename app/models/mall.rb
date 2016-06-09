@@ -1,7 +1,7 @@
 class Mall < ActiveRecord::Base
-
-  has_and_belongs_to_many :companies
-  has_many :sections
+  
+  has_many :companies, through: :sections
+  has_many :sections, dependent: :destroy
   has_one :contact, as: :contactable, dependent: :destroy
   accepts_nested_attributes_for :contact, allow_destroy: true
 

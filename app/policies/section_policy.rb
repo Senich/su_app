@@ -16,4 +16,9 @@ class SectionPolicy < ApplicationPolicy
   def create?
     new?
   end
+  
+  def show?
+    true
+  end
+  
 end
