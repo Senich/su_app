@@ -2,8 +2,9 @@ require 'faker'
 FactoryGirl.define do
   
   factory :section do
-    name { Faker::Number.number(3) }
-    contact
+    location { Faker::Number.number(3) }
+    company
+    mall
   end
   
 end

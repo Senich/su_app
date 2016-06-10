@@ -3,6 +3,7 @@ class Product < ActiveRecord::Base
   has_many :product_attachments, dependent: :destroy, inverse_of: :product
   accepts_nested_attributes_for :product_attachments, reject_if: proc { |attributes| attributes['picture'].blank? }
   validates :name, presence: true
+  validates :price, numericality: true 
   validates :width, :depth, :height, :color, presence: true
   validate :validate_attachments_count
   

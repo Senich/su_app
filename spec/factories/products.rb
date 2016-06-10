@@ -2,11 +2,12 @@ require 'faker'
 FactoryGirl.define do
   factory :product do
     name 'Chair'
-    color Faker::Color.color_name
+    color { Faker::Color.color_name }
     width 100
     height 150
     depth 200
     category 'Мебель для гостинной'
+    price { Faker::Commerce.price }
     description Faker::Lorem.sentence
     company
 

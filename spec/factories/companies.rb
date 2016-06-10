@@ -18,6 +18,15 @@ FactoryGirl.define do
       
     end
     
+    trait :with_section do
+      transient do
+        sections_count 1
+      end
+      
+      after(:create) do |company, evaluator|
+        create_list(:section, evaluator.sections_count, company: company)
+      end
+    end
   end
   
 end
