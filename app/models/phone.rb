@@ -1,6 +1,6 @@
 class Phone < ActiveRecord::Base
   belongs_to :contact
-  validates :number, presence: true, numericality: true, length: { minimum: 7, maximum: 11}
+  validates :number, numericality: true, length: { minimum: 7, maximum: 11}
   
   def format_number
     #вид 555-55-55

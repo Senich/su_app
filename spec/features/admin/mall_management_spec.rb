@@ -48,7 +48,7 @@ feature 'Управление мебельными центрами' do
     fill_in 'Телефон', with: '9213522103'
     fill_in 'Доб.', with: '110'
     fill_in 'Примечания', with: 'Телефон рецепции'
-    fill_in 'Описание', with: 'MEGAMALL'
+    fill_in 'Описание', with: 'Самый лучший мебельный центр на северозападе'
     click_button 'Обновить сведения'
     expect(page).to have_content 'Сведения о ТЦ MEGA успешно обновлены'
     expect(page).to have_content 'MEGA'
@@ -56,7 +56,7 @@ feature 'Управление мебельными центрами' do
     expect(page).to have_content '22'
     expect(page).to have_content 'mebel@mega.com'
     expect(page).to have_content '(921) 352-21-03'
-    expect(page).to have_content 'MEGAMALL'
+    expect(page).to have_content 'Самый лучший мебельный центр на северозападе'
   end
   
   scenario 'удаление записи о молле' do

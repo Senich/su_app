@@ -16,18 +16,20 @@ ru:
         category: "Категория"
       company:
         name: "Название компании"
-      address:
+      mall:
         street: "Поле улица"
         building: "Поле дом"
         name: "Поле название магазина или ТЦ"
-      phones:
-        number: "Номер телефона"
-      sections:
+      section:
         location: "Секция по данному адресу"
+      mall/contact/phones:
+        number: "Номер телефона"
+      contact:
+        email: "Электроннная почта"
     models:
       user: "Пользователь"
       product: "Товарная позиция"
-  
+
 
 
 

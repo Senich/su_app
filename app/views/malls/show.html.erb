@@ -41,7 +41,7 @@
         <ul class="list-group">
           <% @mall.companies.each do |company| %>
             <li class="list-group-item">
-              <%= company.name %>
+              <%= link_to company.name, company_path(company) %>
             </li>
           <% end %>
         </ul>

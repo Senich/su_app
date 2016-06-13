@@ -3,7 +3,7 @@ require 'rails_helper'
 describe User do
 
   before :each do
-    @user = FactoryGirl.build(:user)
+    @user = build(:user)
   end
 
   it 'Созданный пользователь должен проходить валидацию' do
@@ -15,7 +15,7 @@ describe User do
   end
 
   it 'Возвращает полное имя' do
-    @user = FactoryGirl.build(:user, first_name: 'John', last_name: 'Doe')
+    @user = build(:user, first_name: 'John', last_name: 'Doe')
     expect(@user.full_name).to eq('John Doe')
   end
 
