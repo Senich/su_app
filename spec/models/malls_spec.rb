@@ -14,11 +14,11 @@ RSpec.describe Mall, type: :model do
     should validate_uniqueness_of(:name)
   end
 
-  it 'Компания может иметь опциональные атрибуты' do
+  it 'ТЦ может иметь опциональные атрибуты' do
     # should_not validate_presence_of()
   end
 
-  it 'Компания должна иметь следующие реляционные отношения' do
+  it 'ТЦ должна иметь следующие реляционные отношения' do
     should have_many(:companies)
     should have_many(:sections)
     should have_one(:contact)

@@ -7,7 +7,7 @@ class Mall < ActiveRecord::Base
 
   validates :name, :city, :street, :building, :contact, presence: true
   validates_uniqueness_of :name
-  validates_length_of :details, minimum: 10, too_short: 'Описание ТЦ должно быть более подробным', allow_blank: true
+  validates_length_of :details, minimum: 10, too_short: ' должно быть более подробным (10 символов минимум)', allow_blank: true
 
 
   def full_address

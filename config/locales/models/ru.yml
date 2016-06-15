@@ -20,6 +20,7 @@ ru:
         street: "Поле улица"
         building: "Поле дом"
         name: "Поле название магазина или ТЦ"
+        details: "Описание"
       section:
         location: "Секция по данному адресу"
       mall/contact/phones:

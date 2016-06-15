@@ -18,7 +18,7 @@ before_action :authorize_product, except: [:index, :new, :create]
     @product = Product.new
     authorize @product
     @company = current_user.company
-    @product_attachment = @product.product_attachments.build
+    @product_attachment = @product.product_attachments.new
   end
 
   def create
@@ -27,7 +27,7 @@ before_action :authorize_product, except: [:index, :new, :create]
     # если картинки приложены то создаём соответствующую запись
     if params[:product_attachments] != nil
       params[:product_attachments]['picture'].each do |p|
-        @product_attachment = @product.product_attachments.build(:picture => p)
+        @product_attachment = @product.product_attachments.create!(picture: p)
       end
     end
   	if @product.save
