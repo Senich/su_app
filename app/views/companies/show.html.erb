@@ -14,7 +14,7 @@
         <strong>Сведения о компании</strong>
       </div>
       <ul class="list-group">
-        <li class="list-group-item"><%= @company.details %></li>
+        <li class="list-group-item"><%= @company.about %></li>
         <% @company.contact.phones.each do |phone| %>
           <li class="list-group-item">
             Телефоны:</br><%= "#{phone.format_number}" %>

@@ -54,7 +54,7 @@ class MallsController < ApplicationController
   private
   
   def mall_params
-    params.require(:mall).permit(:name, :details, :street, :city, :building, contact_attributes: [:id, :email, :details, :_destroy,
+    params.require(:mall).permit(:name, :about, :street, :city, :building, contact_attributes: [:id, :email, :details, :_destroy,
       phones_attributes: [:id, :number, :contact_id, :notes, :extension, :_destroy]])
   end
   

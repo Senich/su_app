@@ -7,7 +7,7 @@ RSpec.describe Company, type: :model do
   end
   
   it 'Компания может иметь опциональные атрибуты' do
-    should_not validate_presence_of(:details)
+    should_not validate_presence_of(:about)
   end
   
     

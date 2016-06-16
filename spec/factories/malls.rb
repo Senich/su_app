@@ -5,7 +5,7 @@ FactoryGirl.define do
     city { Faker::Address.city }
     street { Faker::Address.street_name }
     building { Faker::Address.building_number }
-    details { Faker::Company.catch_phrase }
+    about { Faker::Company.catch_phrase }
     contact
     
     factory :mall_with_companies do
