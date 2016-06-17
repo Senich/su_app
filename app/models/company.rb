@@ -8,6 +8,6 @@ class Company < ActiveRecord::Base
 
   accepts_nested_attributes_for :contact, allow_destroy: true
   
-  validates :name, presence: true
+  validates_presence_of :name
 
 end

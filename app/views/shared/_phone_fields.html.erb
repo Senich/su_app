@@ -1,26 +1,5 @@
-<div class="form-group">
-  <div class="control-label col-md-4">
-    <%= f.label :number, 'Телефон' %>
-  </div>
-  <div class="col-md-4">
-    <%= f.phone_field :number, class: 'form-control' %>
-  </div>
-</div>
+<%= f.input :number, label: 'Телефон' %>
 
-<div class="form-group">
-  <div class="control-label col-md-4">
-    <%= f.label :extension, 'Доб.' %>
-  </div>
-  <div class="col-md-4">
-    <%= f.text_field :extension, class: 'form-control' %>
-  </div>
-</div>
+<%= f.input :extension, label: 'Доб.' %>
 
-<div class="form-group">
-  <div class="control-label col-md-4">
-    <%= f.label :notes, 'Примечания' %>
-  </div>
-  <div class="col-md-4">
-    <%= f.text_area :notes, class: 'form-control' %>
-  </div>
-</div>
+<%= f.input :notes, label: 'Примечания' %>

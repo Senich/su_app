@@ -35,7 +35,7 @@ class CompaniesController < ApplicationController
   end
 
   def update
-
+    @contact = @company.contact
     if @company.update_attributes(company_params)
       flash[:success] = "Сведения о компании #{@company.name} успешно обновлены"
       redirect_to @company

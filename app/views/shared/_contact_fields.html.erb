@@ -1,14 +1,7 @@
-<div class="form-group">
-  <div class="control-label col-md-4">
-    <%= f.label :email, 'Email' %>
-  </div>
-  <div class="col-md-4">
-    <%= f.phone_field :email, class: 'form-control' %>
-  </div>
-</div>
+<%= f.input :email %>
 
 <% contact.phones.each do |phone| %>
-  <%= f.fields_for :phones do |phone_form| %>
+  <%= f.simple_fields_for :phones do |phone_form| %>
     <%= render 'shared/phone_fields', f: phone_form %>
   <% end  %>
 <% end %>

@@ -1,38 +1,18 @@
 <div class="row">
   <div class="col-md-12">
-    <%= form_for(@company, :html => {class: 'form-horizontal', role: 'form' })  do |f| %>
+    <%= simple_form_for(@company, :html => {class: 'form-horizontal'})  do |f| %>
       <%= render 'shared/errors', obj: @company , model_name: 'компании' %>
+      <div class="col-md-4 col-md-offset-4">
+        <%= f.input :name %>
 
-      <div class="form-group">
-        <div class="control-label col-md-4">
-          <%= f.label :name, 'Название' %>
-        </div>
-        <div class="col-md-4">
-          <%= f.text_field :name, class: 'form-control', autofocus: true %>
-        </div>
-      </div>
-      
-      <div class="form-group">
-        <div class="control-label col-md-4">
-          <%= f.label :about, 'О компании' %>
-        </div>
-        <div class="col-md-4">
-          <%= f.text_area :about, class: 'form-control', autofocus: true %>
-        </div>
-      </div>
-      
-      
-      
-      <%= f.fields_for :contact do |contact_form| %>
-          <% render 'shared/contact_fields', f: contact_form, contact: @contact %>
-      <% end %>
-      
-      <div class="form-group">
-        <div class='col-md-offset-4 col-md-4'>
-          <%= f.submit @company.new_record? ? 'Создать компанию' : 'Обновить данные', class: 'btn btn-primary btn-md' %>
-        </div>
-      </div>
+        <%= f.input :about, label: 'О компании' %>
 
+        <%= f.simple_fields_for :contact do |contact_form| %>
+            <% render 'shared/contact_fields', f: contact_form, contact: @contact %>
+        <% end %>
+
+        <%= f.button :submit, @company.new_record? ? 'Создать компанию' : 'Обновить данные', class: 'btn-primary' %>
+      </div>
     <% end %>
   </div>
 </div>

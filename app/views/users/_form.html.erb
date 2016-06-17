@@ -1,59 +1,16 @@
 <div class='row'>
   <div class='col-md-12'>
-    <%= simple_form_for(@user, :html => {class: 'form-horizontal', role: 'form' }) do |f| %>
+    <%= simple_form_for(@user, :html => {class: 'form-horizontal'}) do |f| %>
       <%= render 'shared/errors', obj: @user , model_name: 'продавца' %>
-      
-      
-      <%= f.input :first_name, label: 'Имя', label_html: {class:'col-md-3'} %>
-      <%= f.input :last_name, label: 'Фамилия', label_html: {class:'col-md-3'}, input_html: {class:'col-md-6'} %>
-
-      <div class="form-group">
-        <div class="control-label col-md-3">
-          <%= f.label :company, 'Компания' %>
-        </div>
-        <div class="col-md-6">
-          <% company = @user.new_record? && !session[:company_id].nil? ? session[:company_id] : @user.company_id %> 
-          <%= f.select(:company_id, options_from_collection_for_select(Company.all, 'id', 'name', company), {},
-                {class: 'form-control'}) %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="control-label col-md-3">
-          <%= f.label :email, text='E-mail' %>
-        </div>
-        <div class="col-md-6">
-          <%= f.email_field :email, class: 'form-control',
-                            autofocus: true %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="control-label col-md-3">
-          <%= f.label :password, text='Пароль' %>
-        </div>
-        <div class="col-md-6">
-          <%= f.password_field :password, class: 'form-control',
-                               autocomplete: 'off' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="control-label col-md-3">
-          <%= f.label :password_confirmation, 'Подтверждение пароля' %>
-        </div>
-        <div class="col-md-6">
-          <%= f.password_field :password_confirmation, class: 'form-control',
-                               autocomplete: 'off' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class='col-md-offset-3 col-md-6'>
-          <%= f.submit @user.new_record? ? 'Добавить продавца' : 'Обновить сведения', class: 'btn btn-primary btn-md' %>
-        </div>
+      <div class='col-md-4 col-md-offset-4'>
+        <%= f.input :first_name, label: 'Имя' %>
+        <%= f.input :last_name, label: 'Фамилия' %>
+        <%= f.association :company, label: 'Компания', include_blank: false %>
+        <%= f.input :email %>
+        <%= f.input :password %>
+        <%= f.input :password_confirmation, label: 'Подтверждение пароля' %>
+        <%= f.button :submit, @user.new_record? ? 'Добавить продавца' : 'Обновить сведения', class: 'btn-primary' %>
       </div>
     <% end %>
-
   </div>
 </div>
