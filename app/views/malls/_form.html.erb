@@ -1,63 +1,26 @@
 <div class="row">
   <div class="col-md-12">
-    <%= form_for(@mall, html: {class: 'form-horizontal', role: 'form'}) do |f| %>
+    <%= simple_form_for(@mall, html: {class: 'form-horizontal', role: 'form'}) do |f| %>
       <%= render 'shared/errors', obj: @mall, model_name: 'торгового центра' %>
-      <div id="create-form">
+      <div class="col-md-4 col-md-offset-4">
 
-        <div class="form-group">
-          <div class="control-label col-md-4">
-            <%= f.label :name, 'Название магазина или ТЦ' %>
-          </div>
-          <div class="col-md-4">
-            <%= f.text_field :name, class: 'form-control' %>
-          </div>
-        </div>
+        <%= f.input :name, label: 'Название магазина или ТЦ' %>
 
-        <div class="form-group">
-          <div class="control-label col-md-4">
-            <%= f.label :about, 'Описание' %>
-          </div>
-          <div class="col-md-4">
-            <%= f.text_area :about, class: 'form-control' %>
-          </div>
-        </div>
+        <%= f.input :about, label: 'Описание' %>
 
-        <div class="form-group">
-          <div class="control-label col-md-4">
-            <%= f.label :city, 'Город' %>
-          </div>
-          <div class="col-md-4">
-            <%= f.select(:city, options_for_select(['Москва', 'Санкт-Петербург']), {}, {class: "form-control"}) %>
-          </div>
-        </div>
+        <%= f.input :city, label: 'Город', collection: ['Москва', 'Санкт-Петербург'], selected: 'Москва' %>
 
-        <div class="form-group">
-          <div class="control-label col-md-4">
-            <%= f.label :street, 'Улица' %>
-          </div>
-          <div class="col-md-4">
-            <%= f.text_field :street, class: 'form-control' %>
-          </div>
-        </div>
 
-        <div class="form-group">
-          <div class="control-label col-md-4">
-            <%= f.label :building, 'Дом' %>
-          </div>
-          <div class="col-md-4">
-            <%= f.text_field :building, class: 'form-control' %>
-          </div>
-        </div>
+        <%= f.input :street, label: 'Улица' %>
+
+        <%= f.input :building, label: 'Дом' %>
         
         <%= f.fields_for :contact do |contact_form| %>
           <%= render 'shared/contact_fields', f: contact_form, contact: @mall.contact %>
         <% end %>
 
-        <div class="form-group">
-          <div class='col-md-offset-4 col-md-6'>
-            <%= f.submit @mall.new_record? ? 'Создать ТЦ' : 'Обновить сведения', class: 'btn btn-primary btn-md' %>
-          </div>
-        </div>
+        <%= f.button :submit, @mall.new_record? ? 'Создать ТЦ' : 'Обновить сведения', class: 'btn btn-primary btn-md' %>
+
       </div>
     <% end %>
   </div>

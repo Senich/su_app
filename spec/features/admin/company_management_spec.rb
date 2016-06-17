@@ -16,7 +16,7 @@ feature 'Управление компаниями' do
     click_link 'Добавить компанию'
     expect {
       fill_in 'Название', with: 'ООО Вектор'
-      fill_in 'Email', with: 'vector@vector.com'
+      fill_in 'Электроннная почта', with: 'vector@vector.com'
       fill_in 'Телефон', with: 2445665
       fill_in 'О компании', with: 'Самая лучшая компания в мире'
       click_button 'Создать компанию'
@@ -39,7 +39,7 @@ feature 'Управление компаниями' do
     find(link).click
     fill_in 'Название', with: 'ООО Супертел'
     fill_in 'О компании', with: 'Telecom company #1'
-    fill_in 'Email', with: 'st@st.com'
+    fill_in 'Электроннная почта', with: 'st@st.com'
     fill_in 'Телефон', with: '5552299'
     fill_in 'Примечания', with: 'Контакты центрального офиса'
     click_button 'Обновить данные'
@@ -93,7 +93,7 @@ feature 'Управление компаниями' do
     expect {
       fill_in 'Расположение', with: 'Секция 223'
       fill_in 'Телефон', with: '5555555'
-      fill_in 'Email', with: 'test@test.com'
+      fill_in 'Электроннная почта', with: 'test@test.com'
       click_button 'Добавить адрес'
     }.to change(Section, :count).by(1)
     expect(page).to have_content "Адрес для #{company.name} успешно добавлен"

@@ -17,7 +17,7 @@ feature 'Управление мебельными центрами' do
       select 'Москва', from: 'mall[city]'
       fill_in 'Улица', with: 'Проспект Просвещения'
       fill_in 'Дом', with: '23А'
-      fill_in 'Email', with: 'mebel@city.com'
+      fill_in 'Электроннная почта', with: 'mebel@city.com'
       fill_in 'Телефон', with: 2339841
       fill_in 'Доб.', with: 224
       fill_in 'Примечания', with: 'Телефон секретаря'
@@ -44,7 +44,7 @@ feature 'Управление мебельными центрами' do
     select 'Москва', from: 'mall[city]'
     fill_in 'Улица', with: 'Невский проспект'
     fill_in 'Дом', with: '22'
-    fill_in 'Email', with: 'mebel@mega.com'
+    fill_in 'Электроннная почта', with: 'mebel@mega.com'
     fill_in 'Телефон', with: '9213522103'
     fill_in 'Доб.', with: '110'
     fill_in 'Примечания', with: 'Телефон рецепции'
