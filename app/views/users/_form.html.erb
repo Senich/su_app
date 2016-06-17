@@ -1,26 +1,11 @@
 <div class='row'>
   <div class='col-md-12'>
-    <%= form_for(@user, :html => {class: 'form-horizontal', role: 'form' }) do |f| %>
+    <%= simple_form_for(@user, :html => {class: 'form-horizontal', role: 'form' }) do |f| %>
       <%= render 'shared/errors', obj: @user , model_name: 'продавца' %>
-      <div class="form-group">
-        <div class="control-label col-md-3">
-          <%= f.label :first_name, text='Имя' %>
-        </div>
-        <div class="col-md-6">
-          <%= f.text_field :first_name, class: 'form-control',
-                           autofocus: true %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="control-label col-md-3">
-          <%= f.label :last_name, text='Фамилия' %>
-        </div>
-        <div class="col-md-6">
-          <%= f.text_field :last_name, class: 'form-control',
-                           autofocus: true %>
-        </div>
-      </div>
+      
+      
+      <%= f.input :first_name, label: 'Имя', label_html: {class:'col-md-3'} %>
+      <%= f.input :last_name, label: 'Фамилия', label_html: {class:'col-md-3'}, input_html: {class:'col-md-6'} %>
 
       <div class="form-group">
         <div class="control-label col-md-3">
