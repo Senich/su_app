@@ -18,6 +18,7 @@
         <% @company.contact.phones.each do |phone| %>
           <li class="list-group-item">
             Телефоны:</br><%= "#{phone.format_number}" %>
+            <%= " доб. #{phone.extension} " unless phone.extension.empty? %>
             <%= "| #{phone.notes}" unless phone.notes.empty? %>
           </li>    
         <% end %>
@@ -34,9 +35,9 @@
       <ul class="list-group">
         <% @company.sections.each do |section| %>
           <li class="list-group-item">
-            <%= section.mall.name %>
-            Секция: <%= section.location %></br>
-            <%= section.mall.full_address %></br>
+            <%= link_to "#{section.mall.name}", section.mall %>, 
+            <%= section.mall.full_address %>, 
+            Секция: <%= section.location %>
           </li>
         <% end %>
         <li class="list-group-item" id="add_address">
