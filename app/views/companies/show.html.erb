@@ -37,7 +37,11 @@
           <li class="list-group-item">
             <%= link_to "#{section.mall.name}", section.mall %>, 
             <%= section.mall.full_address %>, 
-            Секция: <%= section.location %>
+            Секция: <%= section.location %>,
+            Тел. 
+            <% section.contact.phones.each do |phone| %>
+              <%= "#{phone.format_number}" %>
+            <% end %>
           </li>
         <% end %>
         <li class="list-group-item" id="add_address">
