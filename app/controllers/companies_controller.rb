@@ -25,6 +25,8 @@ class CompaniesController < ApplicationController
       redirect_to company_path(@company)
     else
       flash.now[:danger] = 'Не удалось создать компанию'
+       @contact = @company.build_contact
+       @phone = @contact.phones.build
       render :new
     end
   end

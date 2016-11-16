@@ -16,17 +16,19 @@ class SectionsController < ApplicationController
 
   def create
     #находим компанию по информации из session которую пихнули в экшне show
-    company = Company.find(session[:company_id])
+    @company = Company.find(session[:company_id])
     @section = Section.new(section_params)
     #добавляем ссылку на компанию, которой принадлежит секция
-    @section.company_id = company.id
+    @section.company_id = @company.id
     authorize @section
     if @section.save
-      flash[:success] = "Адрес для #{company.name} успешно добавлен"
+      flash[:success] = "Адрес для #{@company.name} успешно добавлен"
       session[:company_id] = nil
-      redirect_to company_path(company)
+      redirect_to company_path(@company)
     else
-      flash.now[:danger] = "Не удалось создать адрес для #{company.name}"
+      flash.now[:danger] = "Не удалось создать адрес для #{@company.name}"
+      @contact = @section.build_contact
+      @phone = @contact.phones.build
       render :new
     end
   end

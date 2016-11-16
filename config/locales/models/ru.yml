@@ -25,6 +25,10 @@ ru:
         location: "Секция по данному адресу"
       mall/contact/phones:
         number: "Номер телефона"
+      company/contact/phones:
+        number: "Номер телефона"
+      contact/phones:
+        number: "Номер телефона"
       contact:
         email: "Электроннная почта"
     models:
