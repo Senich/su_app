@@ -13,7 +13,7 @@ FactoryGirl.define do
       end
       
       after(:create) do |company, evaluator|
-        create_list(:mall, evaluator.malls_count, malls: [mall])
+        create_list(:mall, evaluator.malls_count, companies: [company])
       end
       
     end

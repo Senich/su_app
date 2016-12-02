@@ -5,6 +5,7 @@ FactoryGirl.define do
     location { Faker::Number.number(3) }
     company
     mall
+    contact
   end
   
 end

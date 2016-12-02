@@ -10,7 +10,7 @@ feature 'Управление мебельными центрами' do
   scenario 'создание торгового центра' do
     visit admin_path
     click_link 'Мебельные центры'
-    expect(page).to have_content 'Список зарегистрированых торговых центров и магазинов'
+    expect(page).to have_content 'Список торговых центров и магазинов'
     click_link 'Добавить ТЦ'
     expect {
       fill_in 'Название', with: 'Мебель-сити'
