@@ -3,7 +3,8 @@ ru:
     attributes:
       user:
         email: "E-mail"
-        password: "Пароль"
+        password: "пароль"
+        password_confirmation: "Подтверждение пароля"
         first_name: "Поле имя"
         last_name: "Поле фамилия"
       product:
