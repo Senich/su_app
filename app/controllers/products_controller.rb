@@ -24,18 +24,18 @@ before_action :authorize_product, except: [:index, :new, :create]
   def create
   	@product = current_user.company.products.new(products_params)
   	authorize @product
-    # если картинки приложены то создаём соответствующую запись
-    if params[:product_attachments] != nil
-      params[:product_attachments]['picture'].each do |p|
-        @product_attachment = @product.product_attachments.create!(picture: p)
-      end
-    end
   	if @product.save
+      # если картинки приложены то создаём соответствующую запись
+      if params[:product_attachments] != nil
+        params[:product_attachments]['picture'].each do |p|
+          @product_attachment = @product.product_attachments.create!(picture: p)
+        end
+      end
   		flash[:success] = 'Товарная позиция успешно создана.'
   		redirect_to  @product
   	else
   		flash.now[:danger] = 'Не удалось создать товарную позицию'
-  		render 'new'
+  		render :new
   	end
   end
 

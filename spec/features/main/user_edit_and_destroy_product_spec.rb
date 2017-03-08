@@ -33,8 +33,9 @@ RSpec.feature 'Пользователь(seller)' do
     click_link 'Личный кабинет'
     
     expect {
-      link = "//a[contains(@href, '/products/#{@john_product.id}') and .//text()='Удалить'] "
-      find(:xpath, link).click
+      # link = "//a[contains(@href, '/products/#{@john_product.id}') and .//text()='Удалить'] "
+      # find(:xpath, link).click
+      page.click_link('', href:"/products/#{@john_product.id}")
     }.to change(Product, :count).by(-1)
     
     expect(page).to have_content('Товарная позиция успешно удалена.')

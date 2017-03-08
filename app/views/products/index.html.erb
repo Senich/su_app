@@ -1,13 +1,8 @@
 <div class="row">
 	<h1><p class="text-center">Мои товарные позиции</p></h1>
 </div>
-<div class="row">
-	<div class="col-md-2">
-		<%= link_to 'Добавить товар', new_company_product_path(current_user.company_id), class: 'btn btn-primary link' %>
-	</div>
-</div>
 
-<div class="col-md-12 col-xs-12">
+<div class="col-md-10 col-xs-12 col-md-offset-1">
   <% unless @products.empty? %>
 	<table class="table table-striped table-hover">
 	  <thead>
@@ -26,8 +21,8 @@
 		      	<td><%= product.color %></td>
 		      	<td><%= "#{product.width}x#{product.height}x#{product.depth}" %></td>
 		      	<td><%= number_to_currency product.price %></td>
-		      	<td><%= link_to 'Редактировать', [:edit, product] %></td>
-		      	<td><%= link_to 'Удалить', product, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+            <td class="col-md-1"><%= link_to '<span class="glyphicon glyphicon-pencil">'.html_safe, [:edit, product] %></td>
+            <td class="col-md-1"><%= link_to '<span class="glyphicon glyphicon-remove">'.html_safe, product, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
 		      </tr>
 		    <% end %>    	
 		  </tbody>  
@@ -35,4 +30,7 @@
 	  </thead>
 	</table>
   <% end %>	
+</div>
+<div class="row col-md-2 col-md-offset-1">
+  <%= link_to 'Добавить товар', new_company_product_path(current_user.company_id), class: 'btn btn-primary link' %>
 </div>
